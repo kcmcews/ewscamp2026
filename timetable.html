@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 EWS Camp - Timetable</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #2e1547;
+            --secondary-purple: #4a2a6b;
+            --accent-gold: #c5a059;
+            --bg-light: #fdfbf7;
+            --text-dark: #333333;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .back-btn {
+            text-decoration: none;
+            color: var(--primary-purple);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+        .back-btn i { margin-right: 8px; }
+
+        .container {
+            padding: 20px;
+            max-width: 480px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        /* Header Section */
+        .page-header {
+            text-align: center;
+            background: white;
+            padding: 22px 20px;
+            border-radius: 20px;
+            border-top: 6px solid var(--primary-purple);
+            box-shadow: 0 4px 15px rgba(74, 42, 107, 0.05);
+            margin-bottom: 20px;
+        }
+        .page-title {
+            color: var(--primary-purple);
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin: 0 0 5px 0;
+            letter-spacing: 1px;
+        }
+        .page-subtitle {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* Tab Bar */
+        .tabs-container {
+            display: flex;
+            background: rgba(74, 42, 107, 0.05);
+            padding: 6px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(74, 42, 107, 0.1);
+        }
+        .tab-btn {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: var(--primary-purple);
+            padding: 10px 5px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s ease;
+            text-align: center;
+        }
+        .tab-btn span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: normal;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+        .tab-btn.active {
+            background: var(--primary-purple);
+            color: white;
+            box-shadow: 0 4px 10px rgba(74, 42, 107, 0.15);
+        }
+
+        /* Schedule Timeline */
+        .timeline-content {
+            display: none;
+        }
+        .timeline-content.active {
+            display: block;
+        }
+        
+        .time-card {
+            background: white;
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .time-card.highlight-theme {
+            border-left: 5px solid var(--accent-gold);
+            background: #fffdf9;
+        }
+        .time-card.highlight-rest {
+            border-left: 5px solid #888888;
+            background: #fcfcfc;
+            opacity: 0.9;
+        }
+
+        .time-box {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            width: 85px;
+            flex-shrink: 0;
+        }
+        
+        .activity-box {
+            flex-grow: 1;
+            padding-left: 10px;
+        }
+        .activity-title {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #222;
+            margin: 0;
+        }
+        .time-card.highlight-theme .activity-title {
+            color: var(--primary-purple);
+        }
+        .activity-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 2px 0 0 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 40px;
+            background: white;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        footer p { margin: 0; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-chevron-left"></i> Back to Main
+        </a>
+    </nav>
+
+    <div class="container">
+        
+        <div class="page-header">
+            <h1 class="page-title">Camp Timetable</h1>
+            <p class="page-subtitle">2026 EWS Camp • Shining as Stars</p>
+        </div>
+
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchDay(1)">
+                Day 1
+                <span>23/08 (Sun)</span>
+            </button>
+            <button class="tab-btn" onclick="switchDay(2)">
+                Day 2
+                <span>24/08 (Mon)</span>
+            </button>
+            <button class="tab-btn" onclick="switchDay(3)">
+                Day 3
+                <span>25/08 (Tue)</span>
+            </button>
+        </div>
+
+        <!-- DAY 1 -->
+        <div id="day1" class="timeline-content active">
+            <div class="time-card highlight-rest">
+                <div class="time-box">03:00 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Arrival / Check-in & Welcome Tea</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">05:30 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Ice-Breaking</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">06:00 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Dinner</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">07:00 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Opening Worship</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">07:30 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Theme Talk 1</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">08:30 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Group Discussion 1</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">09:30 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Supper</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">10:30 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Lights Out</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 2 -->
+        <div id="day2" class="timeline-content">
+            <div class="time-card highlight-theme">
+                <div class="time-box">07:30 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Morning Devotion</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">08:00 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Breakfast</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">09:00 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Praise & Worship</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">09:30 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Theme Talk 2</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">10:30 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Refreshment Break</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">11:00 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Group Discussion 2</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">12:00 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Lunch</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">01:00 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Free Time / Games</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">03:00 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Jalan-Jalan / Cari Makan</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">05:30 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Mookata Dinner</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">07:00 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Praise & Worship</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">07:30 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Theme Talk 3</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">08:30 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Group Discussion 3</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">09:30 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Supper</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">10:30 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Lights Out</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 3 -->
+        <div id="day3" class="timeline-content">
+            <div class="time-card highlight-theme">
+                <div class="time-box">07:30 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Morning Devotion</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">08:00 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Breakfast</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">09:00 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Praise & Worship</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">09:30 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Sharing of Testimonies</p>
+                </div>
+            </div>
+            <div class="time-card highlight-theme">
+                <div class="time-box">10:30 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Prayer Time</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">11:30 AM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Pack-up</p>
+                </div>
+            </div>
+            <div class="time-card highlight-rest">
+                <div class="time-box">12:00 PM</div>
+                <div class="activity-box">
+                    <p class="activity-title">Lunch & Departure</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>KLANG CHINESE METHODIST CHURCH © 2026</p>
+    </footer>
+
+    <script>
+        function switchDay(dayNum) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx === (dayNum - 1)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const contents = document.querySelectorAll('.timeline-content');
+            contents.forEach((content) => {
+                content.classList.remove('active');
+            });
+            document.getElementById('day' + dayNum).classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

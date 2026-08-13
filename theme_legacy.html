@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主题(二) - 小组的传承</title>
+    <style>
+        :root { --primary: #4a2a6b; --gold: #c5a059; --bg: #fdfbf7; }
+        body { font-family: "PingFang SC", sans-serif; line-height: 1.8; color: #333; background: var(--bg); margin: 0; padding: 0; }
+        nav { background: white; padding: 15px 20px; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
+        .back-btn { text-decoration: none; color: var(--primary); font-weight: bold; }
+        .container { padding: 25px 20px; max-width: 600px; margin: 0 auto; }
+        h1 { color: var(--primary); font-size: 1.5rem; border-left: 6px solid var(--gold); padding-left: 12px; margin-top: 0; }
+        .time { font-size: 0.85rem; color: #888; margin-bottom: 20px; background: #eee; padding: 4px 10px; border-radius: 4px; display: inline-block; }
+        .scripture { background: #fff9f0; padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #f0e4d0; font-style: italic; color: #5d4037; }
+        h3 { color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 8px; margin-top: 30px; }
+        .quote-box { background: var(--primary); color: white; padding: 18px; border-radius: 12px; text-align: center; font-weight: bold; margin: 25px 0; box-shadow: 0 4px 10px rgba(74,42,107,0.2); }
+        
+        /* 反思区域整体背景 */
+        .reflection { background: #f4f1f8; padding: 20px; border-radius: 15px; margin-top: 40px; border: 1px solid #e2d9eb; }
+        .q { font-weight: bold; margin-top: 15px; display: block; color: var(--primary); }
+        
+        /* 针对输入框的样式优化 */
+        .ans-line { 
+            border: none;
+            border-bottom: 1px solid var(--gold); 
+            width: 100%; 
+            margin: 10px 0; 
+            padding: 5px 0;
+            background: transparent;
+            font-size: 1rem;
+            font-family: inherit;
+	    box-sizing: border-box;
+            
+            /* 当用户输入时，文字会自动显示为深金色 */
+            color: #a17828; 
+            font-weight: 500;
+        }
+        /* 当鼠标点击输入框时去掉自带的黑色外框 */
+        .ans-line:focus {
+            outline: none;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* 页脚区域：加入上边框分割线并强制居中 */
+        footer {
+            text-align: center;
+            padding: 20px 0 10px 0;
+            font-size: 0.85rem;
+            color: #888;
+            border-top: 1px solid #e0e0e0; /* 精致淡雅的分割线 */
+            margin-top: 50px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        footer p {
+            margin: 0;
+            text-align: center; /* 确保文字完美居中 */
+        }
+    </style>
+</head>
+<body>
+    <nav><a href="index.html" class="back-btn">← 返回主页</a></nav>
+    <div class="container">
+        <h1>主题(二) | 小组的传承</h1>
+        <div class="time">时间: 2026年6月1日 11:00am</div>
+
+        <div class="reflection">
+            <h4>讨论问题</h4>
+            <span class="q">1. 从摩西、耶稣、初代教会到今日教会，你认为为何神一直使用「小组模式」来牧养祂的子民？ </span>
+            <input type="text" class="ans-line" placeholder="答：">
+            
+            <span class="q">2. 你认为今天教会最大的危机是：</span>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">	• 缺少聚会人数？</p>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">	• 缺少真门徒？</p>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">	• 缺少领袖？</p>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">	• 缺少使命感？</p>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">	为什么？</p>
+            <input type="text" class="ans-line" placeholder="答："> 
+
+            <span class="q">3. 「主日崇拜是装备与宣告的场所；小组则是实践与生命塑造的地方。」你是否认同？</span>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">你认为小组在哪些方面最能建立生命？</p>
+            <input type="text" class="ans-line" placeholder="答：">
+
+            <span class="q">4. 今天你的带领方式，比较像：</span>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;"> "聚会主持人"   还是   "属灵父母"？</p>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;"> 两者最大的分别是什么？</p>
+            <input type="text" class="ans-line" placeholder="答：">
+
+            <span class="q">5. 若未来教会形式大量改变，甚至没有固定教堂与大型聚会，你认为：</span>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">小组应如何继续承担教会使命？</p>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">我们现在应作哪些预备？</p>
+            <input type="text" class="ans-line" placeholder="答：">
+
+        </div>
+
+        <footer>
+            <p>吧生基督教华人卫理公会 组长退修营 © 2026</p>
+        </footer>
+        
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const storageKeyPrefix = "devotion1_ans_";
+            const answerInputs = document.querySelectorAll('.ans-line');
+
+            // 1. 页面加载：读取本地缓存并智能填回输入框
+            answerInputs.forEach((input, index) => {
+                const savedData = localStorage.getItem(storageKeyPrefix + index);
+                if (savedData !== null) {
+                    input.value = savedData;
+                }
+
+                // 2. 输入监听：当组长在手机键盘打字时，实时异步存盘
+                input.addEventListener('input', (e) => {
+                    localStorage.setItem(storageKeyPrefix + index, e.target.value);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

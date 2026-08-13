@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 组长退修营 - 开幕分享</title>
+    <!-- 引入 Tailwind CSS 提升排版与响应式设计 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Google Fonts 中文字体和英文字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- 引入 Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Noto Serif SC', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            gold: '#B89047',   /* 传承色 */
+                            blue: '#1E6F9F',   /* 使命色 */
+                            green: '#3E8E53',  /* 生命色 */
+                            purple: '#4E2A84', /* 主题字色 */
+                            cream: '#FCFAF6',  /* 优雅底色 */
+                            dark: '#1C1B19',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 幻灯片过渡动画与基础样式 */
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .text-glow {
+            text-shadow: 0 4px 12px rgba(184, 144, 71, 0.15);
+        }
+        /* 拟纸张纹理细节 */
+        .bg-grain {
+            background-color: #FAF6EE;
+            background-image: radial-gradient(rgba(0,0,0,0.01) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        /* 进度条动画 */
+        .progress-bar {
+            transition: width 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-zinc-900 h-screen w-screen flex flex-col justify-center items-center overflow-hidden font-sans relative">
+
+    <!-- 主幻灯片容器 (16:9 比例) -->
+    <div class="relative w-full max-w-[1280px] h-full max-h-[720px] bg-grain text-brand-dark rounded-none md:rounded-3xl shadow-2xl flex flex-col justify-between overflow-hidden p-8 md:p-12 border border-stone-200">
+        
+        <!-- 顶部装饰栏 & 当前页码 -->
+        <div class="flex justify-between items-center w-full z-10 border-b border-stone-200 pb-4">
+            <div class="flex items-center space-x-2">
+                <span class="text-xs font-bold text-brand-purple tracking-wider">吧生基督教华人卫理公会 | 2026 组长退修营</span>
+            </div>
+            <div class="text-xs font-bold tracking-widest text-stone-500 bg-stone-100 px-3 py-1 rounded-full">
+                <span id="current-slide-num">1</span> / <span id="total-slides-num">10</span>
+            </div>
+        </div>
+
+        <!-- 幻灯片内容区域 -->
+        <div class="flex-grow w-full flex items-center justify-center py-6">
+
+            <!-- SLIDE 1: 封面 -->
+            <div class="slide active flex-col justify-center items-center text-center space-y-6 w-full h-full" data-title="营会开幕封面">
+                <h4 class="text-brand-purple tracking-[0.2em] font-bold text-lg md:text-xl">吧生基督教华人卫理公会</h4>
+                <div class="space-y-1">
+                    <h1 class="text-5xl md:text-7xl font-serif font-black text-brand-purple text-glow leading-tight">2026 组长退修营</h1>
+                    <div class="w-24 h-1 bg-brand-gold mx-auto my-4 rounded-full"></div>
+                </div>
+                <p class="text-xl md:text-2xl font-serif text-stone-600 tracking-wide font-medium">
+                    同心同行 ── 建造生命，完成使命，延续传承
+                </p>
+                <p class="text-sm font-semibold text-stone-400 tracking-wider pt-2">
+                    <i class="fa-regular fa-calendar-days mr-2"></i> 31/5 – 2/6/2026 <span class="mx-2">|</span> <i class="fa-solid fa-location-dot mr-2"></i> 吉隆坡卫理大厦
+                </p>
+            </div>
+
+            <!-- SLIDE 2: 退修营 -->
+            <div class="slide flex-col justify-center items-center space-y-8 w-full h-full" data-title="营会三大支柱概要">
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-purple">退修营</h2>
+                </div>
+                <!-- 三大板块网格 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl px-4">
+                    <!-- 生命 -->
+                    <div class="bg-white border-t-4 border-brand-green p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow text-center">
+                        <div class="w-12 h-12 bg-emerald-50 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-green mb-2">生命 LIFE</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">在灵命上被更新，与主建立更深的关系，活出有生命力的服事。</p>
+                    </div>
+                    <!-- 使命 -->
+                    <div class="bg-white border-t-4 border-brand-blue p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow text-center">
+                        <div class="w-12 h-12 bg-sky-50 text-brand-blue rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-blue mb-2">使命 MISSION</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">更清楚教会与小组的方向，彼此扶持同行，一起完成主的大使命。</p>
+                    </div>
+                    <!-- 传承 -->
+                    <div class="bg-white border-t-4 border-brand-gold p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow text-center">
+                        <div class="w-12 h-12 bg-amber-50 text-brand-gold rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-users-rays"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-gold mb-2">传承 LEGACY</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">成为属灵榜样，陪伴并培育下一代，让信仰与使命代代相传。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: 主题引入 (呼召 The Calling) -->
+            <div class="slide flex-col justify-center items-center space-y-6 w-full h-full max-w-4xl text-center" data-title="回应《呼召》主题曲">
+                <span class="px-3 py-1 bg-purple-100 text-brand-purple text-xs font-bold rounded-full tracking-widest">RETREAT SONG</span>
+                <h2 class="text-4xl font-serif font-bold text-brand-purple">以《呼召》回应我们的托付</h2>
+                <div class="w-12 h-[2px] bg-brand-gold mx-auto my-2"></div>
+                <p class="text-lg text-stone-600 leading-relaxed max-w-2xl">
+                    华人年议会90周年主题曲《呼召 (The Calling)》。这首歌的每一字句，都深深呼应了我们生命、使命与传承的目标。
+                </p>
+                <div class="bg-white/60 backdrop-blur-sm border border-stone-200 px-6 py-3 rounded-xl inline-flex items-center space-x-4 text-stone-500 text-sm font-semibold">
+                    <span><i class="fa-solid fa-music mr-2 text-brand-gold"></i> Key: A Major</span>
+                    <span class="w-[1px] h-4 bg-stone-300"></span>
+                    <span>12/8 Beat</span>
+                    <span class="w-[1px] h-4 bg-stone-300"></span>
+                    <span>Speed: 88 bpm</span>
+                </div>
+            </div>
+
+            <!-- SLIDE 4: 生命 - 唤起初心 -->
+            <div class="slide flex-col justify-center items-center space-y-6 w-full h-full max-w-5xl" data-title="核心：生命 LIFE">
+                <div class="flex items-center space-x-3 text-brand-green">
+                    <i class="fa-solid fa-seedling text-2xl"></i>
+                    <span class="text-xs font-black tracking-widest uppercase">PILLARS 01 : LIFE</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full">
+                    <div class="md:col-span-7 bg-white/70 border-l-4 border-brand-green p-8 rounded-2xl space-y-4 shadow-sm">
+                        <p class="text-stone-400 text-xs tracking-widest font-bold">主题曲歌词回应：</p>
+                        <p class="text-2xl md:text-3xl font-serif text-stone-800 leading-relaxed font-bold italic">
+                            “让我的 心再次唤起初心，曾经跟随你的每个脚步，行走在更新的应许中。”
+                        </p>
+                    </div>
+                    <div class="md:col-span-5 space-y-4">
+                        <h3 class="text-3xl font-serif font-black text-brand-green">生命：在灵命上被更新</h3>
+                        <p class="text-stone-600 leading-relaxed text-sm">
+                            过去的服事里，我们的生命是否感到枯干？
+                        </p>
+                        <ul class="space-y-2 text-stone-700 font-medium text-sm">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-green mr-2 text-xs"></i> 挪去重担，重新与主深交</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-green mr-2 text-xs"></i> 找回当初为主摆上的那颗“初心”</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-green mr-2 text-xs"></i> 活出有泉源、有生命力的服事</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 5: 使命 - 信心与应许 -->
+            <div class="slide flex-col justify-center items-center space-y-6 w-full h-full max-w-5xl" data-title="核心：使命 MISSION">
+                <div class="flex items-center space-x-3 text-brand-blue">
+                    <i class="fa-solid fa-compass text-2xl"></i>
+                    <span class="text-xs font-black tracking-widest uppercase">PILLARS 02 : MISSION</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full">
+                    <div class="md:col-span-5 space-y-4">
+                        <h3 class="text-3xl font-serif font-black text-brand-blue">使命：脚掌所踏之地</h3>
+                        <p class="text-stone-600 leading-relaxed text-sm">
+                            小组的服事绝不孤单。尽管布满挑战，我们要带着信心与应许坚定前行。
+                        </p>
+                        <ul class="space-y-2 text-stone-700 font-medium text-sm">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-blue mr-2 text-xs"></i> 清晰定位：看清教会与小组的共同方向</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-blue mr-2 text-xs"></i> 组长之间彼此扶持</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-blue mr-2 text-xs"></i> 在小组中完成所托付的使命</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-7 bg-white/70 border-r-4 border-brand-blue p-8 rounded-2xl space-y-4 shadow-sm md:text-right">
+                        <p class="text-stone-400 text-xs tracking-widest font-bold">主题曲歌词回应：</p>
+                        <p class="text-2xl md:text-3xl font-serif text-stone-800 leading-relaxed font-bold italic">
+                            “凡我脚掌所踏之地，照应许你已赐给我。梦虽大，信心也更伟大。”
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 6: 使命中的坚韧与交托 -->
+            <div class="slide flex-col justify-center items-center space-y-6 w-full h-full max-w-4xl text-center" data-title="面对服事挑战与交托">
+                <div class="flex items-center space-x-3 text-brand-blue mx-auto">
+                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    <span class="text-xs font-black tracking-widest uppercase">TRUST & OBEY</span>
+                </div>
+                <p class="text-stone-400 text-xs tracking-widest font-bold">面对服事的风浪：</p>
+                <p class="text-3xl md:text-4xl font-serif text-stone-800 leading-relaxed font-black italic max-w-3xl">
+                    “路虽难，不放弃全交托。黑暗笼罩，困难围绕，超乎我想象。信心实底，盼望是你，主耶稣。”
+                </p>
+                <div class="w-12 h-[2px] bg-stone-300 mx-auto"></div>
+                <p class="text-sm text-stone-500 max-w-xl">
+                    我们不看风浪，只看耶稣。主是我们信心的根基，更是我们绝望中的盼望。
+                </p>
+            </div>
+
+            <!-- SLIDE 7: 传承 - 代代相传 -->
+            <div class="slide flex-col justify-center items-center space-y-6 w-full h-full max-w-5xl" data-title="核心：传承 LEGACY">
+                <div class="flex items-center space-x-3 text-brand-gold font-bold">
+                    <i class="fa-solid fa-users-rays text-2xl"></i>
+                    <span class="text-xs font-black tracking-widest uppercase">PILLARS 03 : LEGACY</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full">
+                    <div class="md:col-span-7 bg-white/70 border-l-4 border-brand-gold p-8 rounded-2xl space-y-4 shadow-sm">
+                        <p class="text-stone-400 text-xs tracking-widest font-bold">主题曲歌词回应：</p>
+                        <p class="text-2xl md:text-3xl font-serif text-stone-800 leading-relaxed font-bold italic">
+                            “历史在述说每一个历代信徒撒种耕耘……勇敢地 拥抱伟大的呼召，赢得灵魂，让复兴降临每个世代。”
+                        </p>
+                    </div>
+                    <div class="md:col-span-5 space-y-4">
+                        <h3 class="text-3xl font-serif font-black text-brand-gold">传承：兴起下一代领袖</h3>
+                        <p class="text-stone-600 leading-relaxed text-sm">
+                            今天的服事是历史的接力，昨天的撒种耕耘，造就了今天的我们；我们要点亮火把传给明天。
+                        </p>
+                        <ul class="space-y-2 text-stone-700 font-medium text-sm">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-gold mr-2 text-xs"></i> 活出真实的属灵榜样，发挥生命影响力</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-gold mr-2 text-xs"></i> 倾听、陪伴、并耐心提携下一代门徒</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-gold mr-2 text-xs"></i> 让复兴之火成为代代相传的见证</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 8: 永远的磐石 (Bridge) -->
+            <div class="slide flex-col justify-center items-center space-y-6 w-full h-full max-w-4xl text-center" data-title="永远的磐石与支撑">
+                <span class="px-3 py-1 bg-amber-100 text-brand-gold text-xs font-bold rounded-full tracking-widest">BRIDGE - 我们的支撑</span>
+                <p class="text-3xl md:text-4xl font-serif text-stone-800 leading-relaxed font-black italic max-w-3xl">
+                    “耶稣基督，千古磐石；<br>父子圣灵，永是我的倚靠。”
+                </p>
+                <div class="w-12 h-[2px] bg-brand-gold mx-auto"></div>
+                <p class="text-stone-500 text-sm max-w-xl">
+                    任凭时代变迁、制度更迭。我们的神永不动摇，祂是我们服事路上永恒不变的磐石。
+                </p>
+            </div>
+
+            <!-- SLIDE 9: 有福的确据 -->
+            <div class="slide flex-col justify-center items-center space-y-8 w-full h-full max-w-4xl text-center bg-white border border-stone-200 p-10 rounded-3xl shadow-sm" data-title="有福的确据与主前赞美">
+                <span class="text-brand-purple text-xs tracking-[0.2em] font-black uppercase">Blessed Assurance</span>
+                <div class="space-y-2">
+                    <h2 class="text-3xl font-serif font-bold text-brand-purple">这是我信息，我的诗歌</h2>
+                    <p class="text-stone-500 font-serif italic text-lg">“赞美我救主，昼夜唱和。”</p>
+                </div>
+                <div class="w-16 h-[1px] bg-stone-300 mx-auto"></div>
+                <p class="text-stone-600 text-sm max-w-xl leading-relaxed mx-auto">
+                    当我们再次唤醒初心，向主委身，我们的服事将不再是叹息与重担，而是充满赞美的乐章，昼夜不息。
+                </p>
+            </div>
+
+            <!-- SLIDE 10: 结语与祷告 -->
+            <div class="slide flex-col justify-center items-center space-y-6 w-full h-full max-w-4xl text-center" data-title="总结宣言与结束祷告">
+                <div class="w-16 h-16 bg-brand-purple/5 text-brand-purple rounded-full flex items-center justify-center text-2xl mx-auto mb-2">
+                    <i class="fa-solid fa-hands-praying"></i>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-serif font-black text-brand-purple leading-tight">
+                    同心同行 • 勇敢回应
+                </h2>
+                <div class="w-16 h-[2px] bg-brand-gold mx-auto"></div>
+                <p class="text-lg md:text-xl font-serif text-stone-600 max-w-2xl leading-relaxed">
+                    在这三天夜中，愿圣灵重新点燃我们：<br>更新我们的<b class="text-brand-green">生命</b>，坚固我们的<b class="text-brand-blue">使命</b>，传承荣耀的<b class="text-brand-gold">复兴</b>！
+                </p>
+                <p class="text-xs text-stone-400 font-bold tracking-widest uppercase pt-6">
+                    [ 愿神大大祝福这三天的营会 ]
+                </p>
+            </div>
+
+        </div>
+
+        <!-- 底部导航与控制栏 -->
+        <div class="flex flex-col space-y-4 w-full z-10">
+            <!-- 进度条 -->
+            <div class="w-full h-1 bg-stone-200 rounded-full overflow-hidden">
+                <div id="slides-progress" class="progress-bar h-full bg-brand-purple w-[10%]"></div>
+            </div>
+            
+            <div class="flex justify-between items-center w-full text-stone-500">
+                <div class="text-xs font-bold tracking-wider hidden sm:block">
+                    按 <kbd class="px-2 py-1 bg-stone-200 rounded text-stone-600 shadow-sm">←</kbd> 或 <kbd class="px-2 py-1 bg-stone-200 rounded text-stone-600 shadow-sm">→</kbd> 键亦可切页
+                </div>
+                <!-- 控制按键 -->
+                <div class="flex space-x-4 w-full sm:w-auto justify-between sm:justify-end">
+                    <button id="prev-btn" class="flex items-center space-x-2 px-4 py-2 bg-stone-100 hover:bg-stone-200 active:scale-95 text-stone-700 font-bold rounded-xl transition text-sm">
+                        <i class="fa-solid fa-chevron-left"></i> <span>上一页</span>
+                    </button>
+                    <button id="next-btn" class="flex items-center space-x-2 px-4 py-2 bg-brand-purple hover:bg-purple-900 active:scale-95 text-white font-bold rounded-xl transition text-sm">
+                        <span>下一页</span> <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 自定义精致内置确认模态框 (替代 confirm) -->
+    <div id="custom-confirm-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-stone-100 space-y-6 animate-fade-in">
+            <div class="flex items-center space-x-3 text-brand-purple">
+                <i class="fa-solid fa-circle-question text-3xl"></i>
+                <h3 class="font-serif font-black text-lg">回到封面？</h3>
+            </div>
+            <p class="text-sm text-stone-600 leading-relaxed">已完成开幕分享！您是否要回到第一页封面重新开始投影分享？</p>
+            <div class="flex justify-end space-x-3">
+                <button onclick="handleConfirmResponse(false)" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold rounded-xl text-sm transition">取消</button>
+                <button onclick="handleConfirmResponse(true)" class="px-4 py-2 bg-brand-purple hover:bg-purple-900 text-white font-bold rounded-xl text-sm transition">是的</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 自定义精致内置消息模态框 (替代 alert) -->
+    <div id="custom-alert-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-stone-100 space-y-6 animate-fade-in">
+            <div id="alert-header" class="flex items-center space-x-3 text-emerald-600">
+                <i id="alert-icon" class="fa-solid fa-circle-info text-3xl"></i>
+                <h3 id="alert-title" class="font-serif font-black text-lg">提示</h3>
+            </div>
+            <p id="alert-message" class="text-sm text-stone-600 leading-relaxed">这是系统内置提示内容。</p>
+            <div class="flex justify-end">
+                <button onclick="closeAlertModal()" class="px-5 py-2 bg-brand-purple hover:bg-purple-900 text-white font-bold rounded-xl text-sm transition active:scale-95">我知道了</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 幻灯片交互控制 JS 代码 -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const currentNumEl = document.getElementById('current-slide-num');
+        const totalNumEl = document.getElementById('total-slides-num');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressBar = document.getElementById('slides-progress');
+
+        // 自定义弹窗逻辑元素
+        const confirmModal = document.getElementById('custom-confirm-modal');
+        const alertModal = document.getElementById('custom-alert-modal');
+        const alertIcon = document.getElementById('alert-icon');
+        const alertHeader = document.getElementById('alert-header');
+        const alertTitle = document.getElementById('alert-title');
+        const alertMessage = document.getElementById('alert-message');
+        
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        // 初始化总页数
+        totalNumEl.textContent = totalSlides;
+
+        function updateSlides() {
+            // 切换 Slide active 状态
+            slides.forEach((slide, index) => {
+                if (index === currentIndex) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // 更新页数显示
+            currentNumEl.textContent = currentIndex + 1;
+
+            // 更新进度条
+            const progressPercentage = ((currentIndex + 1) / totalSlides) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+
+            // 处理按钮的可点击性
+            if (currentIndex === 0) {
+                prevBtn.disabled = true;
+                prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                prevBtn.disabled = false;
+                prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            if (currentIndex === totalSlides - 1) {
+                nextBtn.innerHTML = '<span>开始营会</span> <i class="fa-solid fa-circle-check"></i>';
+            } else {
+                nextBtn.innerHTML = '<span>下一页</span> <i class="fa-solid fa-chevron-right"></i>';
+            }
+        }
+
+        function nextSlide() {
+            if (currentIndex < totalSlides - 1) {
+                currentIndex++;
+                updateSlides();
+            } else {
+                // 打开自定义确认模态框代替原 confirm
+                confirmModal.classList.remove('hidden');
+            }
+        }
+
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlides();
+            }
+        }
+
+        // 自定义 confirm 模态框回复处理
+        function handleConfirmResponse(isConfirmed) {
+            confirmModal.classList.add('hidden');
+            if (isConfirmed) {
+                currentIndex = 0;
+                updateSlides();
+            }
+        }
+
+        // 自定义 alert 模态框展示函数
+        function showAlert(message, type = "success") {
+            alertMessage.textContent = message;
+            if (type === "error") {
+                alertTitle.textContent = "发生错误";
+                alertHeader.className = "flex items-center space-x-3 text-red-600";
+                alertIcon.className = "fa-solid fa-circle-exclamation text-3xl";
+            } else {
+                alertTitle.textContent = "提示";
+                alertHeader.className = "flex items-center space-x-3 text-emerald-600";
+                alertIcon.className = "fa-solid fa-circle-check text-3xl";
+            }
+            alertModal.classList.remove('hidden');
+        }
+
+        function closeAlertModal() {
+            alertModal.classList.add('hidden');
+        }
+
+        // 点击事件绑定
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // 键盘按键支持
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // 触屏滑动支持 (左右滑动切页)
+        let touchstartX = 0;
+        let touchendX = 0;
+        
+        const container = document.querySelector('.relative');
+        
+        container.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        });
+
+        container.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            handleGesture();
+        });
+
+        function handleGesture() {
+            if (touchendX < touchstartX - 50) {
+                nextSlide(); // 向左划，下一页
+            }
+            if (touchendX > touchstartX + 50) {
+                prevSlide(); // 向右划，上一页
+            }
+        }
+
+        // 首次加载初始化
+        updateSlides();
+    </script>
+</body>
+</html>

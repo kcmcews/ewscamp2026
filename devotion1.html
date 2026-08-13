@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵修(一) - 分享的生命</title>
+    <style>
+        :root { --primary: #4a2a6b; --gold: #c5a059; --bg: #fdfbf7; }
+        body { font-family: "PingFang SC", sans-serif; line-height: 1.8; color: #333; background: var(--bg); margin: 0; padding: 0; }
+        nav { background: white; padding: 15px 20px; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
+        .back-btn { text-decoration: none; color: var(--primary); font-weight: bold; }
+        .container { padding: 25px 20px; max-width: 600px; margin: 0 auto; }
+        h1 { color: var(--primary); font-size: 1.5rem; border-left: 6px solid var(--gold); padding-left: 12px; margin-top: 0; }
+        .time { font-size: 0.85rem; color: #888; margin-bottom: 20px; background: #eee; padding: 4px 10px; border-radius: 4px; display: inline-block; }
+        .scripture { background: #fff9f0; padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #f0e4d0; font-style: italic; color: #5d4037; }
+        h3 { color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 8px; margin-top: 30px; }
+        .quote-box { background: var(--primary); color: white; padding: 18px; border-radius: 12px; text-align: center; font-weight: bold; margin: 25px 0; box-shadow: 0 4px 10px rgba(74,42,107,0.2); }
+
+        /* 【新增】灵修插图自适应手机艺术样式 */
+        .devotion-img-box {
+            width: 100%;
+            margin: 35px 0 15px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .devotion-img-box img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px; /* 优雅大圆角 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 细腻拟物阴影 */
+            border: 1px solid #eaddca;
+        }
+		
+        /* 反思区域整体背景 */
+        .reflection { background: #f4f1f8; padding: 20px; border-radius: 15px; margin-top: 40px; border: 1px solid #e2d9eb; }
+        .q { font-weight: bold; margin-top: 15px; display: block; color: var(--primary); }
+        
+        /* 针对输入框的样式优化 */
+        .ans-line { 
+            border: none;
+            border-bottom: 1px solid var(--gold); 
+            width: 100%; 
+            margin: 10px 0; 
+            padding: 5px 0;
+            background: transparent;
+            font-size: 1rem;
+            font-family: inherit;
+	    box-sizing: border-box;
+            
+            /* 当用户输入时，文字会自动显示为深金色 */
+            color: #a17828; 
+            font-weight: 500;
+        }
+        /* 当鼠标点击输入框时去掉自带的黑色外框 */
+        .ans-line:focus {
+            outline: none;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* 页脚区域：加入上边框分割线并强制居中 */
+        footer {
+            text-align: center;
+            padding: 20px 0 10px 0;
+            font-size: 0.85rem;
+            color: #888;
+            border-top: 1px solid #e0e0e0; /* 精致淡雅的分割线 */
+            margin-top: 50px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        footer p {
+            margin: 0;
+            text-align: center; /* 确保文字完美居中 */
+        }
+    </style>
+</head>
+<body>
+    <nav><a href="index.html" class="back-btn">← 返回主页</a></nav>
+    <div class="container">
+        <h1>灵修(一) | “向下移动”- 分享的生命</h1>
+        <div class="time">时间: 2026年6月1日 7:30am</div>
+
+        <div class="scripture">
+            经文: 他们吃的时候, 耶稣拿起饼来, 祝福了, 就擘开, 递给门徒, 说: “你们拿去, 吃吧。这是我的身体。” (马太福音 26:26)
+        </div>
+
+        <h3>我们的生命: 成为世界的粮食</h3>
+        <p>当耶稣拿起饼, 祝谢、擘开, 拿给门徒, 这些手势可说是归结了耶稣的一生。耶稣在永恒中被拣选、在约旦河受洗时被祝福、在十字架上被破碎、当作生命的饼给了世人。被拣选、祝福、破碎、给了别人, 就是圣子耶稣基督的庄严属天旅程。</p>
+        <p>当我们擘饼、说“这是基督的身体”分给人, 表示我们定意效法基督的生命, 愿意活出被拣选、祝福、破碎的生命, 成为世界的生命之粮。</p>
+
+        <h3>1. 被拣选</h3>
+        <p>耶稣被天父挑出来, 更好的说法, 是被天父拣选。拣选表达了特殊的关系, 是被挑选出来、受天父特别的眷爱关照。在这个社会, 挑选意味有些人是选不上的。天父的眼光却不是这样, 天父拣选祂的儿子, 显明我们也是被拣选的。</p>
+        <p>服侍一段日子的我们, 请审查是否进入以下状态：服侍受挫 → 我没有价值；无人需要我 → 我失去身份；看不见果效 → 我开始焦虑；别人比我优秀 → 我开始比较。</p>
+        <div class="quote-box">「你是蒙爱的」 -- 拿起 -- 这是所有服侍的起点。</div>
+        <p>不是：先有能力、先有成果、先有恩赐。而是：上帝先拣选了你。</p>
+
+        <h3>2. 被祝福</h3>
+        <p>耶稣是被祝福的。当祂在约旦河受洗, 有声音从天上说: "祢是我的爱子, 我喜悦祢" (可 1:11), 是这祝福成为耶稣生命的支柱。无论遭逢什么事, 赞美或责难, 祂都抓住那祝福, 祂总记得自己是天父喜悦的儿子。</p>
+        <p>耶稣来到世界, 要与我们分享那祝福。祂开我们的耳朵, 让我们听见祂说: “你是我的爱子, 你是我的爱女, 我喜悦你”。 我们如果听到、相信并且记住那声音, 尤其在生命暗淡之际, 就能活出天父蒙福儿女的生活, 并且有能力与别人分享这祝福。服侍者最大的危险, 不是累, 而是：忘记自己是蒙福的人。</p>
+
+        <h3>3. 被破碎</h3>
+        <p>耶稣在十字架上被破碎。祂接纳受苦、死亡为祂的使命。我们也是被破碎的, 我们在生活中经历身体、心灵、意志, 以及关系破碎之苦。服侍者的生命常常经历误解、疲惫、孤单、创伤、委屈、背叛、毁谤…… 然而, 很多服侍者的问题不是“有破碎”, 而是“不允许自己破碎”。</p>
+        <p>耶稣要我们接纳自身破碎, 放置于天父的祝福之下, 作为成圣与炼净的器皿。如此, 生命的破碎反倒成为新生命的入口。</p>
+        <div class="quote-box">“伤口若交给上帝, 会成为别人得医治的地方。”</div>
+
+        <h3>4. 被交付</h3>
+        <p>耶稣被交付给世界。天父的爱子从太初被拣选, 在十字架上破碎, 以致祂一人的生命却能倍增, 成为世世代代人的生命之粮。真正成熟的生命, 不是“成功”, 而是愿意成为别人的粮。重点不是不断消耗自己, 而是在上帝里面被充满后, 再被分给世界, 否则服侍者会耗尽与空洞。</p>
+		
+		<div class="devotion-img-box">
+            <img src="devotion1.jpg" alt="成为生命的灵粮：服侍者的四个生命旅程">
+        </div>
+		
+        <div class="reflection">
+            <h4>安静默想与反思</h4>
+            <span class="q">1. 在长期服侍中, 我是否慢慢把“角色”活成了“身份”? </span>
+	    <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">若离开岗位, 我还知道自己是谁吗?若离开岗位或我无法再服侍，我还知道自己是谁吗？请用一到两句话来回答“我是谁？”</p>
+            <input type="text" class="ans-line" placeholder="答：">
+            
+            <span class="q">2. 我最近最真实的状态是什么?</span>
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">(疲惫? 麻木? 委屈? 比较? 孤单? 平静? 喜乐? 焦虑? 压力?)</p>
+            <input type="text" class="ans-line" placeholder="答：">
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">我里面最常出现的声音是什么？</p>
+            <input type="text" class="ans-line" placeholder="答：">            
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">我是否长期活在自责与不够好？今天的灵修对你说什么？</p>
+            <input type="text" class="ans-line" placeholder="答：">   
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">我更容易记得人的批评，还是神的应许？今天的灵修对你说什么？</p>
+            <input type="text" class="ans-line" placeholder="答：">   
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">我有多久没有真正安静聆听神？(多少天、月、年？)</p>
+            <input type="text" class="ans-line" placeholder="答：">   
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">我是否越来越失去喜乐？</p>
+            <input type="text" class="ans-line" placeholder="答："> 
+
+            <span class="q">3. 上帝曾经托付我的起初呼召是什么? 今天是否偏离了单纯?</span>
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">今天是否偏离了单纯?</p>
+            <input type="text" class="ans-line" placeholder="答：">
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">我现在的服侍，还是出于爱吗？</p>
+            <input type="text" class="ans-line" placeholder="答：">
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">我希望别人记得我的是什么？</p>
+            <input type="text" class="ans-line" placeholder="答：">
+
+            <span class="q">4. 若上帝此刻温柔地问“孩子，你累了吗？”</span>
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">我最真实想回答祂什么？如果你的回答是“是的，我累了！”请尝试完成以下的句子</p>
+            <input type="text" class="ans-line" placeholder="我真正累的，不是工作，而是：">
+
+            <span class="q">当你安静来到上帝面前，你感受到祂会如何温柔回应你？请写下来。”</span>
+            <input type="text" class="ans-line" placeholder="答：">
+        </div>
+
+        <footer>
+            <p>吧生基督教华人卫理公会 组长退修营 © 2026</p>
+        </footer>
+        
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const storageKeyPrefix = "devotion1_ans_";
+            const answerInputs = document.querySelectorAll('.ans-line');
+
+            // 1. 页面加载：读取本地缓存并智能填回输入框
+            answerInputs.forEach((input, index) => {
+                const savedData = localStorage.getItem(storageKeyPrefix + index);
+                if (savedData !== null) {
+                    input.value = savedData;
+                }
+
+                // 2. 输入监听：当组长在手机键盘打字时，实时异步存盘
+                input.addEventListener('input', (e) => {
+                    localStorage.setItem(storageKeyPrefix + index, e.target.value);
+                });
+            });
+        });
+    </script>
+	
+</body>
+</html>
