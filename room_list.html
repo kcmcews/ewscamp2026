@@ -115,6 +115,40 @@
             margin-top: 6px;
         }
 
+        /* Search Bar Styling */
+        .search-box {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            border: 1.5px solid var(--accent-gold);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            background: #fdfcf9;
+            color: var(--text-dark);
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(74, 42, 107, 0.1);
+            background: #ffffff;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
         /* Room Group Cards */
         .room-card {
             background: #faf8f5;
@@ -122,6 +156,7 @@
             border-radius: 12px;
             padding: 14px;
             margin-bottom: 12px;
+            transition: all 0.2s ease;
         }
 
         .room-header {
@@ -163,12 +198,33 @@
             color: #444;
             display: inline-flex;
             align-items: center;
+            transition: 0.2s;
         }
 
         .member-tag i {
             font-size: 0.75rem;
             margin-right: 5px;
             color: var(--accent-gold);
+        }
+
+        /* Highlight matching name during search */
+        .member-tag.highlight {
+            background: var(--accent-gold);
+            color: var(--primary-purple);
+            font-weight: 700;
+            border-color: var(--accent-gold);
+        }
+
+        .member-tag.highlight i {
+            color: var(--primary-purple);
+        }
+
+        #no-results {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9rem;
         }
 
         footer {
@@ -208,74 +264,91 @@
             <div class="map-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Tap map to view high-resolution full image</div>
         </div>
 
-        <!-- Section 2: Mock Room List -->
+        <!-- Section 2: Room List with Search -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-users-rectangle"></i> Room Assignments</h2>
 
-            <!-- Room 1 -->
-            <div class="room-card">
-                <div class="room-header">
-                    <span class="room-name">Tokyo A - T1</span>
-                    <span class="room-badge">Brothers (4 Pax)</span>
-                </div>
-                <div class="member-tags">
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> David Lee</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> John Tan</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Michael Wong</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Alex Lim</span>
-                </div>
+            <!-- Search Bar Input -->
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="nameSearch" onkeyup="filterRooms()" placeholder="Search participant name...">
             </div>
 
-            <!-- Room 2 -->
-            <div class="room-card">
-                <div class="room-header">
-                    <span class="room-name">Tokyo B - T15</span>
-                    <span class="room-badge">Brothers (4 Pax)</span>
+            <!-- Rooms Container -->
+            <div id="roomListContainer">
+
+                <!-- Room 1 -->
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo A - T1</span>
+                        <span class="room-badge">Brothers (4 Pax)</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> David Lee</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> John Tan</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Michael Wong</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Alex Lim</span>
+                    </div>
                 </div>
-                <div class="member-tags">
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Peter Chen</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Stephen James</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Daniel Jackson</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Andrew Kow</span>
+
+                <!-- Room 2 -->
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo B - T15</span>
+                        <span class="room-badge">Brothers (4 Pax)</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Peter Chen</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Stephen James</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Daniel Jackson</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Andrew Kow</span>
+                    </div>
                 </div>
+
+                <!-- Room 3 -->
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Bangkok - B1</span>
+                        <span class="room-badge">Sisters (4 Pax)</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Sarah Tay</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Grace Yeoh</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Hannah Sim</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Rachel Ng</span>
+                    </div>
+                </div>
+
+                <!-- Room 4 -->
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Bangkok - B2</span>
+                        <span class="room-badge">Sisters (3 Pax)</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Lisa Choo</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Tiffany Low</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> May Ling</span>
+                    </div>
+                </div>
+
+                <!-- Room 5 -->
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Hong Kong - H1</span>
+                        <span class="room-badge">Family / Committee</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Pastor & Family</span>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Room 3 -->
-            <div class="room-card">
-                <div class="room-header">
-                    <span class="room-name">Bangkok - B1</span>
-                    <span class="room-badge">Sisters (4 Pax)</span>
-                </div>
-                <div class="member-tags">
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Sarah Tay</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Grace Yeoh</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Hannah Sim</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Rachel Ng</span>
-                </div>
-            </div>
-
-            <!-- Room 4 -->
-            <div class="room-card">
-                <div class="room-header">
-                    <span class="room-name">Bangkok - B2</span>
-                    <span class="room-badge">Sisters (3 Pax)</span>
-                </div>
-                <div class="member-tags">
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Lisa Choo</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Tiffany Low</span>
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> May Ling</span>
-                </div>
-            </div>
-
-            <!-- Room 5 -->
-            <div class="room-card">
-                <div class="room-header">
-                    <span class="room-name">Hong Kong - H1</span>
-                    <span class="room-badge">Family / Committee</span>
-                </div>
-                <div class="member-tags">
-                    <span class="member-tag"><i class="fa-solid fa-user"></i> Pastor & Family</span>
-                </div>
+            <!-- No Results Placeholder -->
+            <div id="no-results">
+                <i class="fa-solid fa-user-slash" style="font-size: 1.5rem; margin-bottom: 8px; color: #ccc;"></i><br>
+                No participant found with that name.
             </div>
 
         </div>
@@ -285,6 +358,43 @@
     <footer>
         KLANG CHINESE METHODIST CHURCH © 2026
     </footer>
+
+    <!-- Search JavaScript -->
+    <script>
+        function filterRooms() {
+            const input = document.getElementById('nameSearch');
+            const filter = input.value.toLowerCase().trim();
+            const roomCards = document.querySelectorAll('.room-card');
+            let hasResults = false;
+
+            roomCards.forEach(card => {
+                const members = card.querySelectorAll('.member-tag');
+                let cardMatches = false;
+
+                members.forEach(member => {
+                    const text = member.textContent.toLowerCase();
+                    if (filter !== "" && text.includes(filter)) {
+                        member.classList.add('highlight');
+                        cardMatches = true;
+                    } else {
+                        member.classList.remove('highlight');
+                        if (filter === "" || text.includes(filter)) {
+                            cardMatches = true;
+                        }
+                    }
+                });
+
+                if (cardMatches) {
+                    card.style.display = "block";
+                    hasResults = true;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            document.getElementById('no-results').style.display = hasResults ? "none" : "block";
+        }
+    </script>
 
 </body>
 </html>
