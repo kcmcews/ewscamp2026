@@ -93,6 +93,35 @@
             color: var(--accent-gold);
         }
 
+        /* Option 2 Navigation Buttons */
+        .nav-buttons-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .app-btn-card {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            background: var(--primary-purple);
+            border: 1px solid var(--accent-gold);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .app-btn-card:hover, .app-btn-card:active {
+            background: var(--accent-gold);
+            color: var(--primary-purple);
+        }
+
         /* Map styling */
         .map-box {
             width: 100%;
@@ -207,7 +236,6 @@
             color: var(--accent-gold);
         }
 
-        /* Highlight matching name during search */
         .member-tag.highlight {
             background: var(--accent-gold);
             color: var(--primary-purple);
@@ -253,9 +281,21 @@
             <p style="font-size: 0.85rem; color: #666; margin: 4px 0 0;">Twin Jets Resort Broga Map & Room Assignments</p>
         </div>
 
-        <!-- Section 1: Map -->
+        <!-- Section 1: Map & Direct Navigation Links -->
         <div class="card-section">
-            <h2 class="section-title"><i class="fa-solid fa-map"></i> Resort Map</h2>
+            <h2 class="section-title"><i class="fa-solid fa-map"></i> Resort Map & Navigation</h2>
+            
+            <!-- Option 2 Navigation Buttons -->
+            <div class="nav-buttons-bar">
+                <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="app-btn-card">
+                    <i class="fa-brands fa-waze"></i> Open Waze
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Twin+Jets+Resort+Broga" target="_blank" class="app-btn-card">
+                    <i class="fa-solid fa-map-pin"></i> Google Maps
+                </a>
+            </div>
+
+            <!-- Map Display (Updated to twinjet.jpg) -->
             <div class="map-box">
                 <a href="twinjet.jpg" target="_blank">
                     <img src="twinjet.jpg" alt="Twin Jets Resort Map">
