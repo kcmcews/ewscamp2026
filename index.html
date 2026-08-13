@@ -61,21 +61,27 @@
             font-size: 0.9rem;
             border: 1px solid var(--accent-gold);
             color: var(--accent-gold);
-            padding: 6px 16px;
+            padding: 8px 20px;
             border-radius: 20px;
-            display: inline-block;
-            letter-spacing: 1px;
-            font-weight: 500;
+            display: inline-flex;
+            flex-direction: column;
             background: rgba(197, 160, 89, 0.1);
         }
 
-        .verse {
-            font-size: 0.75rem;
-            font-style: italic;
-            color: var(--accent-gold);
-            opacity: 0.85;
-            margin-top: 6px;
+        .slogan-text {
+            font-weight: 600;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .verse {
+            font-size: 0.7rem !important;
+            font-style: italic !important;
+            opacity: 0.85;
+            text-align: right;
+            width: 100%;
+            margin-top: 2px;
         }
         
         /* Navigation Container */
@@ -238,11 +244,11 @@
     <header class="header-section">
         <div class="church-name">Klang Chinese Methodist Church</div>
         <div class="main-title">2026 EWS Camp</div>
-        <div class="slogan-badge">
+        <div class="slogan">
             <div class="slogan-text">
                 <i class="fa-solid fa-star" style="font-size: 0.75rem; margin-right: 4px;"></i> Shining as Stars
             </div>
-            <div class="verse-text">Phil 2:15</div>
+            <div class="verse">Phil 2:15</div>
         </div>
     </header>
 
