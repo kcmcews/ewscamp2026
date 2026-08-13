@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room List & Location - 2026 EWS Camp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #2e1547;
+            --secondary-purple: #4a2a6b;
+            --accent-gold: #c5a059;
+            --bg-light: #fdfbf7;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        nav {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--primary-purple);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+
+        .back-btn i { margin-right: 8px; }
+
+        .container {
+            padding: 20px;
+            max-width: 520px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .page-header {
+            background: white;
+            padding: 22px 20px;
+            border-radius: 20px;
+            border-top: 6px solid var(--primary-purple);
+            box-shadow: 0 4px 15px rgba(74, 42, 107, 0.05);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .page-title {
+            color: var(--primary-purple);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 0 4px 0;
+        }
+
+        .card-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin: 0 0 14px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid rgba(74, 42, 107, 0.1);
+            padding-bottom: 8px;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--accent-gold);
+        }
+
+        /* Map styling */
+        .map-box {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .map-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .map-hint {
+            font-size: 0.75rem;
+            color: #888;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        /* Room Group Cards */
+        .room-card {
+            background: #faf8f5;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed rgba(197, 160, 89, 0.4);
+            padding-bottom: 6px;
+        }
+
+        .room-name {
+            font-weight: 700;
+            color: var(--primary-purple);
+            font-size: 1rem;
+        }
+
+        .room-badge {
+            font-size: 0.75rem;
+            background: var(--primary-purple);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .member-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .member-tag {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            color: #444;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .member-tag i {
+            font-size: 0.75rem;
+            margin-right: 5px;
+            color: var(--accent-gold);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 30px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="theme_song.html" class="back-btn">
+            <i class="fa-solid fa-chevron-left"></i> Back to Camp Info
+        </a>
+    </nav>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1 class="page-title">Room & Location Guide</h1>
+            <p style="font-size: 0.85rem; color: #666; margin: 4px 0 0;">Twin Jets Resort Broga Map & Room Assignments</p>
+        </div>
+
+        <!-- Section 1: Map -->
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-map"></i> Resort Map</h2>
+            <div class="map-box">
+                <a href="twinjet.jpg" target="_blank">
+                    <img src="twinjet.jpg" alt="Twin Jets Resort Map">
+                </a>
+            </div>
+            <div class="map-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Tap map to view high-resolution full image</div>
+        </div>
+
+        <!-- Section 2: Mock Room List -->
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-users-rectangle"></i> Room Assignments</h2>
+
+            <!-- Room 1 -->
+            <div class="room-card">
+                <div class="room-header">
+                    <span class="room-name">Tokyo A - T1</span>
+                    <span class="room-badge">Brothers (4 Pax)</span>
+                </div>
+                <div class="member-tags">
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> David Lee</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> John Tan</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Michael Wong</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Alex Lim</span>
+                </div>
+            </div>
+
+            <!-- Room 2 -->
+            <div class="room-card">
+                <div class="room-header">
+                    <span class="room-name">Tokyo B - T15</span>
+                    <span class="room-badge">Brothers (4 Pax)</span>
+                </div>
+                <div class="member-tags">
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Peter Chen</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Stephen James</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Daniel Jackson</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Andrew Kow</span>
+                </div>
+            </div>
+
+            <!-- Room 3 -->
+            <div class="room-card">
+                <div class="room-header">
+                    <span class="room-name">Bangkok - B1</span>
+                    <span class="room-badge">Sisters (4 Pax)</span>
+                </div>
+                <div class="member-tags">
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Sarah Tay</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Grace Yeoh</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Hannah Sim</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Rachel Ng</span>
+                </div>
+            </div>
+
+            <!-- Room 4 -->
+            <div class="room-card">
+                <div class="room-header">
+                    <span class="room-name">Bangkok - B2</span>
+                    <span class="room-badge">Sisters (3 Pax)</span>
+                </div>
+                <div class="member-tags">
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Lisa Choo</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Tiffany Low</span>
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> May Ling</span>
+                </div>
+            </div>
+
+            <!-- Room 5 -->
+            <div class="room-card">
+                <div class="room-header">
+                    <span class="room-name">Hong Kong - H1</span>
+                    <span class="room-badge">Family / Committee</span>
+                </div>
+                <div class="member-tags">
+                    <span class="member-tag"><i class="fa-solid fa-user"></i> Pastor & Family</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        KLANG CHINESE METHODIST CHURCH © 2026
+    </footer>
+
+</body>
+</html>
