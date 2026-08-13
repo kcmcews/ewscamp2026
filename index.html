@@ -179,7 +179,7 @@
             border: 1px stroke rgba(255,255,255,0.05);
         }
 
-        .waze-link {
+        .nav-link {
             color: var(--accent-gold);
             text-decoration: none;
             font-weight: 600;
@@ -187,7 +187,7 @@
             transition: 0.2s ease;
         }
 
-        .waze-link:hover, .waze-link:active {
+        .nav-link:hover, .nav-link:active {
             color: #ffffff;
             text-decoration: underline;
         }
@@ -322,15 +322,21 @@
                 </div>
                 <i class="fa-solid fa-chevron-right chevron-icon"></i>
             </a>
-
+            
             <div class="info-section">
-                <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="waze-link">
-                    <i class="fa-solid fa-location-dot"></i> Broga, Twin Jets Resort
-                </a>
-                <br>
-                <i class="fa-solid fa-calendar" style="margin-top: 6px;"></i> 23/8 - 25/8/2026
+                <div><i class="fa-solid fa-location-dot"></i> Broga, Twin Jets Resort</div>
+                <div class="nav-buttons">
+                    <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="app-btn waze">
+                        <i class="fa-brands fa-waze"></i> Waze
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Twin+Jets+Resort+Broga" target="_blank" class="app-btn gmaps">
+                        <i class="fa-solid fa-map-pin"></i> Google Maps
+                    </a>
+                </div>
+                <div style="margin-top: 8px;">
+                    <i class="fa-solid fa-calendar"></i> 23/8 - 25/8/2026
+                </div>
             </div>
-        </div>
 
         <!-- Subpage: Theme Info -->
         <div id="theme-info-page" class="subpage-view">
