@@ -166,48 +166,52 @@
             transform: translateX(3px);
         }
 
-        /* Information Bar & Navigation Link Styling */
+        /* Information Bar Styling */
         .info-section {
             text-align: center;
             color: var(--accent-gold);
             margin-top: 20px;
             font-size: 0.9rem;
             line-height: 1.6;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.15);
             padding: 16px;
             border-radius: 16px;
-            border: 1px solid rgba(197, 160, 89, 0.3);
+            border: 1px solid rgba(197, 160, 89, 0.2);
         }
 
-        .nav-buttons {
+        /* Pure Text Navigation Links Bar */
+        .nav-links-row {
             display: flex;
+            align-items: center;
             justify-content: center;
             gap: 12px;
-            margin: 10px 0 6px 0;
+            margin: 8px 0;
+            font-size: 0.9rem;
         }
 
-        /* Explicit link styles to override default browser blue/purple link state */
-        .app-btn, 
-        .app-btn:visited, 
-        .app-btn:link {
-            font-size: 0.8rem !important;
-            font-weight: 700 !important;
-            padding: 6px 14px !important;
-            border-radius: 20px !important;
-            text-decoration: none !important;
-            color: var(--primary-purple) !important;
-            background: var(--accent-gold) !important;
+        .divider {
+            color: var(--accent-gold);
+            opacity: 0.4;
+        }
+
+        .text-nav-link,
+        .text-nav-link:visited,
+        .text-nav-link:link {
+            color: var(--accent-gold) !important;
+            text-decoration: underline !important;
+            font-weight: 600 !important;
             display: inline-flex !important;
             align-items: center !important;
-            gap: 6px !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            transition: 0.2s ease;
+            gap: 5px !important;
+            background: none !important;
+            border: none !important;
+            padding: 0 !important;
+            transition: color 0.2s ease;
         }
 
-        .app-btn:hover, 
-        .app-btn:active {
-            background: #ffffff !important;
-            color: var(--primary-purple) !important;
+        .text-nav-link:hover,
+        .text-nav-link:active {
+            color: #ffffff !important;
         }
 
         /* Subpage Views & Animations */
@@ -341,18 +345,19 @@
                 <i class="fa-solid fa-chevron-right chevron-icon"></i>
             </a>
 
-            <!-- Bottom Location & Bright Gold Action Buttons -->
+            <!-- Pure Text Navigation Links -->
             <div class="info-section">
                 <div><i class="fa-solid fa-location-dot"></i> Broga, Twin Jets Resort</div>
-                <div class="nav-buttons">
-                    <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="app-btn">
+                <div class="nav-links-row">
+                    <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="text-nav-link">
                         <i class="fa-brands fa-waze"></i> Waze
                     </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Twin+Jets+Resort+Broga" target="_blank" class="app-btn">
+                    <span class="divider">|</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Twin+Jets+Resort+Broga" target="_blank" class="text-nav-link">
                         <i class="fa-solid fa-map-pin"></i> Google Maps
                     </a>
                 </div>
-                <div style="font-size: 0.85rem; opacity: 0.9; margin-top: 4px;">
+                <div style="margin-top: 6px;">
                     <i class="fa-solid fa-calendar"></i> 23/8 - 25/8/2026
                 </div>
             </div>
