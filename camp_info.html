@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camp Information - 2026 EWS Camp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #2e1547;
+            --secondary-purple: #4a2a6b;
+            --accent-gold: #c5a059;
+            --bg-light: #fdfbf7;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        nav {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--primary-purple);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+
+        .back-btn i { margin-right: 8px; }
+
+        .container {
+            padding: 20px;
+            max-width: 520px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .page-header {
+            background: white;
+            padding: 22px 20px;
+            border-radius: 20px;
+            border-top: 6px solid var(--primary-purple);
+            box-shadow: 0 4px 15px rgba(74, 42, 107, 0.05);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .page-title {
+            color: var(--primary-purple);
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 0 0 4px 0;
+        }
+
+        .page-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .card-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin: 0 0 14px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid rgba(74, 42, 107, 0.1);
+            padding-bottom: 8px;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--accent-gold);
+        }
+
+        /* Action Buttons */
+        .action-card {
+            display: flex;
+            align-items: center;
+            background: rgba(74, 42, 107, 0.04);
+            border: 1.5px solid rgba(197, 160, 89, 0.4);
+            border-radius: 14px;
+            padding: 14px 16px;
+            text-decoration: none;
+            color: var(--primary-purple);
+            transition: 0.2s ease;
+            margin-bottom: 12px;
+        }
+
+        .action-card:hover, .action-card:active {
+            background: var(--primary-purple);
+            color: white;
+            border-color: var(--primary-purple);
+        }
+
+        .action-card:hover .action-icon, .action-card:active .action-icon {
+            background: var(--accent-gold);
+            color: var(--primary-purple);
+        }
+
+        .action-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(74, 42, 107, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--primary-purple);
+            margin-right: 14px;
+            flex-shrink: 0;
+            transition: 0.2s ease;
+        }
+
+        .action-text {
+            flex-grow: 1;
+        }
+
+        .action-text h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .action-text p {
+            margin: 2px 0 0 0;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Do's & Don'ts */
+        .rules-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rules-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        .rules-list.dos li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #2e7d32;
+        }
+
+        .rules-list.donts li::before {
+            content: "\f00d";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #c62828;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 30px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-chevron-left"></i> Back to Main
+        </a>
+    </nav>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1 class="page-title">Camp Information</h1>
+            <p class="page-subtitle">Essential details & guidelines for 2026 EWS Camp</p>
+        </div>
+
+        <!-- Section 1: Location & Navigation -->
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-map-location-dot"></i> Venue & Navigation</h2>
+            <a href="https://waze.com/ul/hw282p4r33" target="_blank" class="action-card">
+                <div class="action-icon"><i class="fa-brands fa-waze"></i></div>
+                <div class="action-text">
+                    <h3>Navigate via Waze</h3>
+                    <p>Twin Jets Resort, Broga</p>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </div>
+
+        <!-- Section 2: Room & Accommodation -->
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-bed"></i> Accommodation</h2>
+            <a href="room_list.html" class="action-card">
+                <div class="action-icon"><i class="fa-solid fa-map-pin"></i></div>
+                <div class="action-text">
+                    <h3>Room List & Resort Map</h3>
+                    <p>View resort map & room assignments</p>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </div>
+
+        <!-- Section 3: Photo Sharing -->
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-camera-retro"></i> Camp Memories</h2>
+            <a href="https://photos.app.goo.gl/mockup_link_ews2026" target="_blank" class="action-card">
+                <div class="action-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                <div class="action-text">
+                    <h3>Upload Camp Photos</h3>
+                    <p>Share your moments to Google Photos album</p>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </div>
+
+        <!-- Section 4: Do's and Don'ts -->
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-clipboard-check"></i> Camp Guidelines</h2>
+            
+            <h4 style="margin: 10px 0 8px 0; color: #2e7d32;"><i class="fa-regular fa-thumbs-up"></i> Do's</h4>
+            <ul class="rules-list dos">
+                <li>Be punctual for all worship sessions, devotionals, and meal times.</li>
+                <li>Wear your camp name tag at all times for security and identification.</li>
+                <li>Maintain clean common spaces and respect quiet hours (10:30 PM - 7:00 AM).</li>
+                <li>Keep your personal belongings and room keys secure at all times.</li>
+            </ul>
+
+            <h4 style="margin: 18px 0 8px 0; color: #c62828;"><i class="fa-regular fa-thumbs-down"></i> Don'ts</h4>
+            <ul class="rules-list donts">
+                <li>Do not enter rooms assigned to the opposite gender.</li>
+                <li>Do not leave the resort grounds without informing committee members.</li>
+                <li>Avoid wasting food or leaving trash in the seminar halls.</li>
+                <li>No smoking, alcohol, or illicit substances anywhere on the resort premises.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        KLANG CHINESE METHODIST CHURCH © 2026
+    </footer>
+
+</body>
+</html>
