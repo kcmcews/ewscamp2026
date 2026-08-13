@@ -179,6 +179,19 @@
             border: 1px stroke rgba(255,255,255,0.05);
         }
 
+        .waze-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: 0.2s ease;
+        }
+
+        .waze-link:hover, .waze-link:active {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
         /* Subpage Views & Animations */
         .subpage-view {
             display: none;
@@ -311,8 +324,11 @@
             </a>
 
             <div class="info-section">
-                <i class="fa-solid fa-location-dot"></i> Broga, Twin Jests Resort<br>
-                <i class="fa-solid fa-calendar"></i> 23/8 - 25/8/2026
+                <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="waze-link">
+                    <i class="fa-solid fa-location-dot"></i> Broga, Twin Jets Resort
+                </a>
+                <br>
+                <i class="fa-solid fa-calendar" style="margin-top: 6px;"></i> 23/8 - 25/8/2026
             </div>
         </div>
 
