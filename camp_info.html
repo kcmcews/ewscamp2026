@@ -99,6 +99,28 @@
             color: var(--accent-gold);
         }
 
+        /* Banner / Camp Info Image Styling */
+        .info-img-box {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .info-img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .img-hint {
+            font-size: 0.75rem;
+            color: #888;
+            text-align: center;
+            margin-top: 6px;
+        }
+
         /* Help Contact List Styles */
         .committee-grid {
             display: grid;
@@ -272,11 +294,24 @@
             <p class="page-subtitle">Essential details & guidelines for 2026 EWS Camp</p>
         </div>
 
+        <!-- Section 1: Camp Info Image Poster -->
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-image"></i> Overview & Notice</h2>
+            <div class="info-img-box">
+                <a href="Camp%20info.jpg" target="_blank">
+                    <img src="Camp%20info.jpg" alt="Camp Information Poster">
+                </a>
+            </div>
+            <div class="img-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Tap image to view full size</div>
+        </div>
+
+        <!-- Section 2: If you need help -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-phone-volume"></i> <b>If you need help</b></h2>
 
             <div class="committee-grid">
 
+                <!-- 1 -->
                 <div class="committee-card">
                     <div class="committee-info">
                         <h4>Kang D-way</h4>
@@ -286,6 +321,7 @@
                     <a href="tel:+60128034264" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
+                <!-- 2 -->
                 <div class="committee-card">
                     <div class="committee-info">
                         <h4>Dr. Tan Peck Leong</h4>
@@ -295,6 +331,7 @@
                     <a href="tel:+60162037373" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
+                <!-- 3 -->
                 <div class="committee-card">
                     <div class="committee-info">
                         <h4>Isaac Ng Hao Ern</h4>
@@ -304,6 +341,7 @@
                     <a href="tel:+60162187145" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
+                <!-- 4 -->
                 <div class="committee-card">
                     <div class="committee-info">
                         <h4>Ng Ee Ling</h4>
@@ -313,6 +351,7 @@
                     <a href="tel:+60162794151" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
+                <!-- 5 -->
                 <div class="committee-card">
                     <div class="committee-info">
                         <h4>Esther Lim</h4>
@@ -325,6 +364,7 @@
             </div>
         </div>
 
+        <!-- Section 3: Location & Navigation -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-map-location-dot"></i> Venue & Navigation</h2>
             <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="action-card">
@@ -337,6 +377,7 @@
             </a>
         </div>
 
+        <!-- Section 4: Room & Accommodation -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-bed"></i> Accommodation</h2>
             <a href="room_list.html" class="action-card">
@@ -349,6 +390,7 @@
             </a>
         </div>
 
+        <!-- Section 5: Photo Sharing -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-camera-retro"></i> Camp Memories</h2>
             <a href="https://photos.app.goo.gl/mockup_link_ews2026" target="_blank" class="action-card">
@@ -361,6 +403,7 @@
             </a>
         </div>
 
+        <!-- Section 6: Do's and Don'ts -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-clipboard-check"></i> Camp Guidelines</h2>
             
