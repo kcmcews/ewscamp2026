@@ -179,6 +179,37 @@
             color: var(--primary-purple);
         }
 
+        /* Minimal Pure Text Navigation Link Styling */
+        .nav-links-row {
+            display: flex;
+            align-items: center;
+            margin-top: 6px;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            color: var(--accent-gold);
+            opacity: 0.4;
+        }
+
+        .text-nav-link,
+        .text-nav-link:visited,
+        .text-nav-link:link {
+            color: var(--accent-gold) !important;
+            text-decoration: underline !important;
+            font-weight: 600 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 5px !important;
+            transition: color 0.2s ease;
+        }
+
+        .text-nav-link:hover,
+        .text-nav-link:active {
+            color: var(--primary-purple) !important;
+        }
+
         /* Action Buttons */
         .action-card {
             display: flex;
@@ -294,7 +325,6 @@
             <p class="page-subtitle">Essential details & guidelines for 2026 EWS Camp</p>
         </div>
 
-        <!-- Section 1: Camp Info Image Poster -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-image"></i> Overview & Notice</h2>
             <div class="info-img-box">
@@ -305,13 +335,11 @@
             <div class="img-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Tap image to view full size</div>
         </div>
 
-        <!-- Section 2: If you need help -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-phone-volume"></i> <b>If you need help</b></h2>
 
             <div class="committee-grid">
 
-                <!-- 1 -->
                 <div class="committee-card">
                     <div class="committee-info">
                         <h4>Kang D-way</h4>
@@ -321,7 +349,6 @@
                     <a href="tel:+60128034264" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
-                <!-- 2 -->
                 <div class="committee-card">
                     <div class="committee-info">
                         <h4>Dr. Tan Peck Leong</h4>
@@ -331,7 +358,6 @@
                     <a href="tel:+60162037373" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
-                <!-- 3 -->
                 <div class="committee-card">
                     <div class="committee-info">
                         <h4>Isaac Ng Hao Ern</h4>
@@ -341,7 +367,6 @@
                     <a href="tel:+60162187145" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
-                <!-- 4 -->
                 <div class="committee-card">
                     <div class="committee-info">
                         <h4>Ng Ee Ling</h4>
@@ -351,7 +376,6 @@
                     <a href="tel:+60162794151" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
-                <!-- 5 -->
                 <div class="committee-card">
                     <div class="committee-info">
                         <h4>Esther Lim</h4>
@@ -364,20 +388,20 @@
             </div>
         </div>
 
-        <!-- Section 3: Location & Navigation -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-map-location-dot"></i> Venue & Navigation</h2>
-            <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="action-card">
-                <div class="action-icon"><i class="fa-brands fa-waze"></i></div>
-                <div class="action-text">
-                    <h3>Navigate via Waze</h3>
-                    <p>Twin Jets Resort, Broga</p>
-                </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a>
+            <div style="font-size: 0.95rem; font-weight: 700; color: var(--primary-purple);">Twin Jets Resort, Broga</div>
+            <div class="nav-links-row">
+                <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="text-nav-link">
+                    <i class="fa-brands fa-waze"></i> Waze
+                </a>
+                <span class="divider">|</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Twin+Jets+Resort+Broga" target="_blank" class="text-nav-link">
+                    <i class="fa-solid fa-map-pin"></i> Google Maps
+                </a>
+            </div>
         </div>
 
-        <!-- Section 4: Room & Accommodation -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-bed"></i> Accommodation</h2>
             <a href="room_list.html" class="action-card">
@@ -390,7 +414,6 @@
             </a>
         </div>
 
-        <!-- Section 5: Photo Sharing -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-camera-retro"></i> Camp Memories</h2>
             <a href="https://photos.app.goo.gl/mockup_link_ews2026" target="_blank" class="action-card">
@@ -403,7 +426,6 @@
             </a>
         </div>
 
-        <!-- Section 6: Do's and Don'ts -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-clipboard-check"></i> Camp Guidelines</h2>
             
