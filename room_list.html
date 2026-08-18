@@ -606,3 +606,113 @@
                         <span class="member-tag"><i class="fa-solid fa-user"></i> Ching Ing Hoe</span>
                         <span class="member-tag"><i class="fa-solid fa-user"></i> Lee Ai Bee</span>
                     </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo B - T27</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 4 Singles</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Tien Sen An</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Nathan Liang</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Lucas Lai</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo C - T7</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 2 Queens & 4 Singles</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Esther Lim</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Ng Ai Ling</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Ng Ee Ling</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Ng Vooi Ling</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">HK Villa</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 3-room / 2 Queens each</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Lim Sook Bee</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Sheena Lee</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Molly Yeoh</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Cynthia Tan</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Renate Johnston</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Tean Pey Feng</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Christina Tee</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Shirley Ong</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Andy Loh</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Patrick Tee</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Ng Choon Tat</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Teh Swee Seng</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="no-results">
+                <i class="fa-solid fa-user-slash" style="font-size: 1.5rem; margin-bottom: 8px; color: #ccc;"></i><br>
+                No participant found with that name.
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        KLANG CHINESE METHODIST CHURCH © 2026
+    </footer>
+
+    <script>
+        function filterRooms() {
+            const input = document.getElementById('nameSearch');
+            const filter = input.value.toLowerCase().trim();
+            const roomCards = document.querySelectorAll('.room-card');
+            let hasResults = false;
+
+            roomCards.forEach(card => {
+                const members = card.querySelectorAll('.member-tag');
+                let cardMatches = false;
+
+                members.forEach(member => {
+                    const text = member.textContent.toLowerCase();
+                    if (filter !== "" && text.includes(filter)) {
+                        member.classList.add('highlight');
+                        cardMatches = true;
+                    } else {
+                        member.classList.remove('highlight');
+                        if (filter === "" || text.includes(filter)) {
+                            cardMatches = true;
+                        }
+                    }
+                });
+
+                if (cardMatches) {
+                    card.style.display = "block";
+                    hasResults = true;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            document.getElementById('no-results').style.display = hasResults ? "none" : "block";
+        }
+    </script>
+
+</body>
+</html>
