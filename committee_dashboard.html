@@ -32,7 +32,6 @@
             z-index: 100;
             box-shadow: 0 2px 5px rgba(0,0,0,0.02);
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
 
@@ -46,23 +45,6 @@
         }
 
         .back-btn i { margin-right: 8px; }
-
-        .logout-btn {
-            background: transparent;
-            border: 1px solid var(--primary-purple);
-            color: var(--primary-purple);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .logout-btn:hover {
-            background: var(--primary-purple);
-            color: white;
-        }
 
         .container {
             padding: 20px;
@@ -353,17 +335,12 @@
         if (sessionStorage.getItem("committee_authenticated") !== "true") {
             window.location.href = "committee_gate.html";
         }
-        function logout() {
-            sessionStorage.removeItem("committee_authenticated");
-            window.location.href = "committee_gate.html";
-        }
     </script>
 
     <nav>
         <a href="index.html" class="back-btn">
             <i class="fa-solid fa-chevron-left"></i> Back to Main
         </a>
-        <button class="logout-btn" onclick="logout()">Lock / Exit</button>
     </nav>
 
     <div class="container">
