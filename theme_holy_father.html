@@ -118,7 +118,7 @@
             padding: 14px 16px;
             border-radius: 8px;
             font-style: italic;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             font-size: 0.95rem;
             color: #444;
         }
@@ -275,14 +275,29 @@
             <p class="scripture-ref"><i class="fa-solid fa-book-bookmark"></i> Phil 2:15; Lev 19:2; Mat 5:48 (ESV)</p>
         </div>
 
+        <!-- Section 1: Sermon Outlines -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-scroll"></i> Sermon Outlines</h2>
             
+            <!-- Verse 1 -->
             <div class="scripture-box">
                 <p>“...that you may be blameless and innocent, children of God without blemish in the midst of a crooked and twisted generation, among whom you shine as lights in the world...”</p>
                 <span class="ref-tag">— Philippians 2:15 (ESV)</span>
             </div>
 
+            <!-- Verse 2 -->
+            <div class="scripture-box">
+                <p>“Speak to all the congregation of the people of Israel and say to them, You shall be holy, for I the LORD your God am holy.”</p>
+                <span class="ref-tag">— Leviticus 19:2 (ESV)</span>
+            </div>
+
+            <!-- Verse 3 -->
+            <div class="scripture-box">
+                <p>“You therefore must be perfect, as your heavenly Father is perfect.”</p>
+                <span class="ref-tag">— Matthew 5:48 (ESV)</span>
+            </div>
+
+            <!-- Outline Point 1 -->
             <div class="outline-heading">1. Introduction</div>
             <ul class="outline-list">
                 <li>Theme: Holiness or Holy Living</li>
@@ -302,6 +317,7 @@
                 </li>
             </ul>
 
+            <!-- Notes area 1 -->
             <div class="notes-area-wrapper">
                 <div class="notes-label">
                     <i class="fa-solid fa-pen-fancy"></i> Notes (Section 1)
@@ -310,6 +326,7 @@
                 <textarea class="notes-input auto-save" data-save-key="talk1_notes_1" placeholder="Type your personal sermon notes here..."></textarea>
             </div>
 
+            <!-- Outline Point 2 -->
             <div class="outline-heading">2. In What Sense is God Holy?</div>
             <ul class="outline-list">
                 <li><b>Root meaning is 'to separate':</b>
@@ -336,6 +353,7 @@
                 </li>
             </ul>
 
+            <!-- Notes area 2 -->
             <div class="notes-area-wrapper">
                 <div class="notes-label">
                     <i class="fa-solid fa-pen-fancy"></i> Notes (Section 2)
@@ -344,6 +362,7 @@
                 <textarea class="notes-input auto-save" data-save-key="talk1_notes_2" placeholder="Type your personal sermon notes here..."></textarea>
             </div>
 
+            <!-- Outline Point 3 -->
             <div class="outline-heading">3. The Holy God Who Does Not Tolerate Sin</div>
             <ul class="outline-list">
                 <li>Scripture Context: <span class="verse-callout">Ex 32:7-10</span>; <span class="verse-callout">Ex 33:12-23</span></li>
@@ -352,6 +371,7 @@
                 <li>Moses' prayer: "Please show me your glory" <span class="verse-callout">Ex 33:18-23</span>. Man shall not see His face and live; placed in a cleft of the rock.</li>
             </ul>
 
+            <!-- Notes area 3 -->
             <div class="notes-area-wrapper">
                 <div class="notes-label">
                     <i class="fa-solid fa-pen-fancy"></i> Notes (Section 3)
@@ -361,9 +381,11 @@
             </div>
         </div>
 
+        <!-- Section 2: Group Discussion Questions -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-comments"></i> Group Discussion Questions</h2>
             
+            <!-- Question 1 -->
             <div class="question-item">
                 <span class="question-num">Question 1</span>
                 <p class="question-text">Is there a danger that often the gospel of justification by faith and acceptance by God has been presented as "cheap grace" and Christians have treated God more like an indulgent godfather than a holy Father? How serious is that problem in your church and in your life? Examples?</p>
@@ -373,6 +395,7 @@
                 </div>
             </div>
 
+            <!-- Question 2 -->
             <div class="question-item">
                 <span class="question-num">Question 2</span>
                 <p class="question-text">How should we interpret passages like <span class="verse-callout">Matthew 5:29-30</span>? Should it be interpreted literally? Alternatively, should we ignore passages like this?</p>
@@ -382,6 +405,7 @@
                 </div>
             </div>
 
+            <!-- Question 3 -->
             <div class="question-item">
                 <span class="question-num">Question 3</span>
                 <p class="question-text">Do you dare to pray Moses' prayer, "Please show me your glory" <span class="verse-callout">Ex 33:18</span>? Should we pray it?</p>
@@ -398,26 +422,25 @@
         KLANG CHINESE METHODIST CHURCH © 2026
     </footer>
 
+    <!-- Async Local Storage Auto-Saving Script -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const inputs = document.querySelectorAll('.auto-save');
 
             inputs.forEach((input) => {
-                // Generate a specific key matching this file structure
                 const cacheKey = "ews2026_" + input.getAttribute('data-save-key');
                 const indicatorId = input.previousElementSibling.querySelector('.save-indicator');
 
-                // 1. Initial State Restoration Engine
+                // 1. Initial State Restoration
                 const cachedData = localStorage.getItem(cacheKey);
                 if (cachedData !== null) {
                     input.value = cachedData;
                 }
 
-                // 2. Real-time Async Persistence Handler
+                // 2. Real-time Async Persistence
                 input.addEventListener('input', (e) => {
                     localStorage.setItem(cacheKey, e.target.value);
                     
-                    // Show a quick organic saving verification status trigger
                     if(indicatorId) {
                         indicatorId.classList.add('show');
                         clearTimeout(input.saveTimeout);
