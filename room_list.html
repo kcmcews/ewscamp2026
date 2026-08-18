@@ -93,19 +93,21 @@
             color: var(--accent-gold);
         }
 
-        /* Option 2 Navigation Buttons */
+        /* Navigation Buttons */
         .nav-buttons-bar {
             display: flex;
             gap: 10px;
             margin-bottom: 14px;
         }
 
-        .app-btn-card {
+        .app-btn-card, 
+        .app-btn-card:visited, 
+        .app-btn-card:link {
             flex: 1;
             padding: 10px;
             border-radius: 10px;
-            text-decoration: none;
-            color: white;
+            text-decoration: none !important;
+            color: white !important;
             background: var(--primary-purple);
             border: 1px solid var(--accent-gold);
             display: inline-flex;
@@ -119,7 +121,7 @@
 
         .app-btn-card:hover, .app-btn-card:active {
             background: var(--accent-gold);
-            color: var(--primary-purple);
+            color: var(--primary-purple) !important;
         }
 
         /* Map styling */
@@ -192,7 +194,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             border-bottom: 1px dashed rgba(197, 160, 89, 0.4);
             padding-bottom: 6px;
         }
@@ -210,6 +212,19 @@
             padding: 2px 8px;
             border-radius: 10px;
             font-weight: 600;
+        }
+
+        .room-subdetail {
+            font-size: 0.78rem;
+            color: #777;
+            margin-bottom: 8px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .room-subdetail span i {
+            color: var(--accent-gold);
+            margin-right: 4px;
         }
 
         .member-tags {
@@ -281,11 +296,9 @@
             <p style="font-size: 0.85rem; color: #666; margin: 4px 0 0;">Twin Jets Resort Broga Map & Room Assignments</p>
         </div>
 
-        <!-- Section 1: Map & Direct Navigation Links -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-map"></i> Resort Map & Navigation</h2>
             
-            <!-- Option 2 Navigation Buttons -->
             <div class="nav-buttons-bar">
                 <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="app-btn-card">
                     <i class="fa-brands fa-waze"></i> Open Waze
@@ -295,7 +308,6 @@
                 </a>
             </div>
 
-            <!-- Map Display (Updated to twinjet.jpg) -->
             <div class="map-box">
                 <a href="twinjet.jpg" target="_blank">
                     <img src="twinjet.jpg" alt="Twin Jets Resort Map">
@@ -304,137 +316,201 @@
             <div class="map-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Tap map to view high-resolution full image</div>
         </div>
 
-        <!-- Section 2: Room List with Search -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-users-rectangle"></i> Room Assignments</h2>
 
-            <!-- Search Bar Input -->
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="nameSearch" onkeyup="filterRooms()" placeholder="Search participant name...">
             </div>
 
-            <!-- Rooms Container -->
             <div id="roomListContainer">
 
-                <!-- Room 1 -->
                 <div class="room-card">
                     <div class="room-header">
                         <span class="room-name">Tokyo A - T1</span>
-                        <span class="room-badge">Brothers (4 Pax)</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 Queen + 4 Singles</span>
                     </div>
                     <div class="member-tags">
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> David Lee</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> John Tan</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Michael Wong</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Alex Lim</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Amy Sim</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Timothy Lee</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Lee Ning Xi (11)</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Lee Wen Lerk (8)</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Lee Wen Hang (&lt;1)</span>
                     </div>
                 </div>
 
-                <!-- Room 2 -->
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo A - T3</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 Queen + 4 Singles</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> David Kuah</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Elaine Kwong</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Kuah Zhu Yhuung (6)</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Kuah Zhu Yiuu (4)</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Kuah Zhu Uun (2)</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo B - T08</span>
+                        <span class="room-badge">Upstairs [Above T9]</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 4 Singles</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Teh Lay Hong</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Anggelina Kasamiro</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Susan Mah</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo B - T09</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 Queen + 2 Singles</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Bishop Hwa Yung</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo B - T10</span>
+                        <span class="room-badge">Upstairs [Above T11]</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 Queen + 2 Singles</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Tan Peck Leong</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Chew Wooi Yean</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo B - T11</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 Queen + 2 Singles</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Ps. Lee Jun Yan</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Isaiah Tan</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Frogen Teh</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo B - T12</span>
+                        <span class="room-badge">Upstairs [Above T13]</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 King + 2 Singles</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Stanley Ding</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Lily Lim</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Daphne Ding</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Daryn Ding</span>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo B - T13</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 Queen + 2 Singles</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Ps Lucia Hii</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Jamie Goh</span>
+                    </div>
+                </div>
+
                 <div class="room-card">
                     <div class="room-header">
                         <span class="room-name">Tokyo B - T15</span>
-                        <span class="room-badge">Brothers (4 Pax)</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 Queen + 2 Singles</span>
                     </div>
                     <div class="member-tags">
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Peter Chen</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Stephen James</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Daniel Jackson</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Andrew Kow</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Tan Choon Phark</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Lim Lay Lee</span>
                     </div>
                 </div>
 
-                <!-- Room 3 -->
                 <div class="room-card">
                     <div class="room-header">
-                        <span class="room-name">Bangkok - B1</span>
-                        <span class="room-badge">Sisters (4 Pax)</span>
+                        <span class="room-name">Tokyo B - T16</span>
+                        <span class="room-badge">Upstairs [Above T17]</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 King + 2 Singles</span>
                     </div>
                     <div class="member-tags">
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Sarah Tay</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Grace Yeoh</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Hannah Sim</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Rachel Ng</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Wong Ung Kwong</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Tan Siew Li</span>
                     </div>
                 </div>
 
-                <!-- Room 4 -->
                 <div class="room-card">
                     <div class="room-header">
-                        <span class="room-name">Bangkok - B2</span>
-                        <span class="room-badge">Sisters (3 Pax)</span>
+                        <span class="room-name">Tokyo B - T17</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 King + 2 Singles</span>
                     </div>
                     <div class="member-tags">
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Lisa Choo</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Tiffany Low</span>
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> May Ling</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Yap Kim Kee</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Yap Beng See</span>
                     </div>
                 </div>
 
-                <!-- Room 5 -->
                 <div class="room-card">
                     <div class="room-header">
-                        <span class="room-name">Hong Kong - H1</span>
-                        <span class="room-badge">Family / Committee</span>
+                        <span class="room-name">Tokyo B - T18</span>
+                        <span class="room-badge">Upstairs [Above T19]</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 King + 2 Singles</span>
                     </div>
                     <div class="member-tags">
-                        <span class="member-tag"><i class="fa-solid fa-user"></i> Pastor & Family</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> David Teh</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Jean Teh</span>
                     </div>
                 </div>
 
-            </div>
-
-            <!-- No Results Placeholder -->
-            <div id="no-results">
-                <i class="fa-solid fa-user-slash" style="font-size: 1.5rem; margin-bottom: 8px; color: #ccc;"></i><br>
-                No participant found with that name.
-            </div>
-
-        </div>
-
-    </div>
-
-    <footer>
-        KLANG CHINESE METHODIST CHURCH © 2026
-    </footer>
-
-    <!-- Search JavaScript -->
-    <script>
-        function filterRooms() {
-            const input = document.getElementById('nameSearch');
-            const filter = input.value.toLowerCase().trim();
-            const roomCards = document.querySelectorAll('.room-card');
-            let hasResults = false;
-
-            roomCards.forEach(card => {
-                const members = card.querySelectorAll('.member-tag');
-                let cardMatches = false;
-
-                members.forEach(member => {
-                    const text = member.textContent.toLowerCase();
-                    if (filter !== "" && text.includes(filter)) {
-                        member.classList.add('highlight');
-                        cardMatches = true;
-                    } else {
-                        member.classList.remove('highlight');
-                        if (filter === "" || text.includes(filter)) {
-                            cardMatches = true;
-                        }
-                    }
-                });
-
-                if (cardMatches) {
-                    card.style.display = "block";
-                    hasResults = true;
-                } else {
-                    card.style.display = "none";
-                }
-            });
-
-            document.getElementById('no-results').style.display = hasResults ? "none" : "block";
-        }
-    </script>
-
-</body>
-</html>
+                <div class="room-card">
+                    <div class="room-header">
+                        <span class="room-name">Tokyo B - T19</span>
+                        <span class="room-badge">Downstairs</span>
+                    </div>
+                    <div class="room-subdetail">
+                        <span><i class="fa-solid fa-bed"></i> 1 King + 2 Singles</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Yap Beng Hooi</span>
+                        <span class="member-tag"><i class="fa-solid fa-user"></i> Tan Geok Sim
