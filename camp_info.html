@@ -99,38 +99,7 @@
             color: var(--accent-gold);
         }
 
-        /* Committee Search & Contact Cards */
-        .search-box {
-            position: relative;
-            margin-bottom: 14px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 10px 14px 10px 38px;
-            border: 1.5px solid var(--accent-gold);
-            border-radius: 10px;
-            font-size: 0.88rem;
-            box-sizing: border-box;
-            background: #fdfcf9;
-            color: var(--text-dark);
-            outline: none;
-        }
-
-        .search-box input:focus {
-            border-color: var(--primary-purple);
-            background: #ffffff;
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent-gold);
-            font-size: 0.95rem;
-        }
-
+        /* Help Contact List Styles */
         .committee-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -161,6 +130,13 @@
             font-weight: 500;
         }
 
+        .committee-info .phone-text {
+            font-size: 0.75rem;
+            color: var(--primary-purple);
+            margin-top: 2px;
+            font-weight: 600;
+        }
+
         .call-btn {
             background: var(--primary-purple);
             color: white;
@@ -179,14 +155,6 @@
         .call-btn:hover, .call-btn:active {
             background: var(--accent-gold);
             color: var(--primary-purple);
-        }
-
-        #no-committee {
-            display: none;
-            text-align: center;
-            padding: 15px;
-            color: #888;
-            font-size: 0.85rem;
         }
 
         /* Action Buttons */
@@ -304,114 +272,59 @@
             <p class="page-subtitle">Essential details & guidelines for 2026 EWS Camp</p>
         </div>
 
-        <!-- NEW SECTION 1: Camp Committee Members -->
         <div class="card-section">
-            <h2 class="section-title"><i class="fa-solid fa-id-badge"></i> Camp Committee</h2>
+            <h2 class="section-title"><i class="fa-solid fa-phone-volume"></i> <b>If you need help</b></h2>
 
-            <!-- Search Bar for Committee -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="committeeSearch" onkeyup="filterCommittee()" placeholder="Search committee name or role...">
-            </div>
+            <div class="committee-grid">
 
-            <div class="committee-grid" id="committeeList">
-
-                <!-- 1 -->
                 <div class="committee-card">
                     <div class="committee-info">
-                        <h4>Rev. Daniel Tan</h4>
-                        <div class="role"><i class="fa-solid fa-cross"></i> Camp Pastor</div>
+                        <h4>Kang D-way</h4>
+                        <div class="role"><i class="fa-solid fa-user-gear"></i> Camp Commander</div>
+                        <div class="phone-text">012-803 4264</div>
                     </div>
-                    <a href="tel:+60123456781" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
+                    <a href="tel:+60128034264" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
-                <!-- 2 -->
                 <div class="committee-card">
                     <div class="committee-info">
-                        <h4>David Lee</h4>
-                        <div class="role"><i class="fa-solid fa-user-gear"></i> Camp Commandant</div>
+                        <h4>Dr. Tan Peck Leong</h4>
+                        <div class="role"><i class="fa-solid fa-user-tie"></i> Camp Adviser</div>
+                        <div class="phone-text">016-203 7373</div>
                     </div>
-                    <a href="tel:+60123456782" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
+                    <a href="tel:+60162037373" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
-                <!-- 3 -->
                 <div class="committee-card">
                     <div class="committee-info">
-                        <h4>Sarah Tay</h4>
-                        <div class="role"><i class="fa-solid fa-clipboard-list"></i> Secretary</div>
+                        <h4>Isaac Ng Hao Ern</h4>
+                        <div class="role"><i class="fa-solid fa-user-tie"></i> Camp Adviser</div>
+                        <div class="phone-text">016-218 7145</div>
                     </div>
-                    <a href="tel:+60123456783" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
+                    <a href="tel:+60162187145" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
-                <!-- 4 -->
                 <div class="committee-card">
                     <div class="committee-info">
-                        <h4>John Tan</h4>
-                        <div class="role"><i class="fa-solid fa-coins"></i> Treasurer</div>
+                        <h4>Ng Ee Ling</h4>
+                        <div class="role"><i class="fa-solid fa-van-shuttle"></i> Accommodation & Transportation</div>
+                        <div class="phone-text">016-279 4151</div>
                     </div>
-                    <a href="tel:+60123456784" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
+                    <a href="tel:+60162794151" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
-                <!-- 5 -->
                 <div class="committee-card">
                     <div class="committee-info">
-                        <h4>Michael Wong</h4>
-                        <div class="role"><i class="fa-solid fa-guitar"></i> Worship Lead</div>
+                        <h4>Esther Lim</h4>
+                        <div class="role"><i class="fa-solid fa-hotel"></i> Hotel Liaison</div>
+                        <div class="phone-text">012-646 8144</div>
                     </div>
-                    <a href="tel:+60123456785" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
-                </div>
-
-                <!-- 6 -->
-                <div class="committee-card">
-                    <div class="committee-info">
-                        <h4>Grace Yeoh</h4>
-                        <div class="role"><i class="fa-solid fa-gamepad"></i> Program & Games</div>
-                    </div>
-                    <a href="tel:+60123456786" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
-                </div>
-
-                <!-- 7 -->
-                <div class="committee-card">
-                    <div class="committee-info">
-                        <h4>Alex Lim</h4>
-                        <div class="role"><i class="fa-solid fa-van-shuttle"></i> Transport & Logistics</div>
-                    </div>
-                    <a href="tel:+60123456787" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
-                </div>
-
-                <!-- 8 -->
-                <div class="committee-card">
-                    <div class="committee-info">
-                        <h4>Lisa Choo</h4>
-                        <div class="role"><i class="fa-solid fa-utensils"></i> Food & Catering</div>
-                    </div>
-                    <a href="tel:+60123456788" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
-                </div>
-
-                <!-- 9 -->
-                <div class="committee-card">
-                    <div class="committee-info">
-                        <h4>Hannah Sim</h4>
-                        <div class="role"><i class="fa-solid fa-kit-medical"></i> First Aid & Welfare</div>
-                    </div>
-                    <a href="tel:+60123456789" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
-                </div>
-
-                <!-- 10 -->
-                <div class="committee-card">
-                    <div class="committee-info">
-                        <h4>Peter Chen</h4>
-                        <div class="role"><i class="fa-solid fa-sliders"></i> PA & AV Tech</div>
-                    </div>
-                    <a href="tel:+60123456790" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
+                    <a href="tel:+60126468144" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a>
                 </div>
 
             </div>
-
-            <div id="no-committee">No committee member found.</div>
         </div>
 
-        <!-- Section 2: Location & Navigation -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-map-location-dot"></i> Venue & Navigation</h2>
             <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="action-card">
@@ -424,7 +337,6 @@
             </a>
         </div>
 
-        <!-- Section 3: Room & Accommodation -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-bed"></i> Accommodation</h2>
             <a href="room_list.html" class="action-card">
@@ -437,7 +349,6 @@
             </a>
         </div>
 
-        <!-- Section 4: Photo Sharing -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-camera-retro"></i> Camp Memories</h2>
             <a href="https://photos.app.goo.gl/mockup_link_ews2026" target="_blank" class="action-card">
@@ -450,7 +361,6 @@
             </a>
         </div>
 
-        <!-- Section 5: Do's and Don'ts -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-clipboard-check"></i> Camp Guidelines</h2>
             
@@ -476,28 +386,6 @@
     <footer>
         KLANG CHINESE METHODIST CHURCH © 2026
     </footer>
-
-    <!-- Committee Search Filter JS -->
-    <script>
-        function filterCommittee() {
-            const input = document.getElementById('committeeSearch');
-            const filter = input.value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.committee-card');
-            let hasResults = false;
-
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                if (text.includes(filter)) {
-                    card.style.display = "flex";
-                    hasResults = true;
-                } else {
-                    card.style.display = "none";
-                }
-            });
-
-            document.getElementById('no-committee').style.display = hasResults ? "none" : "block";
-        }
-    </script>
 
 </body>
 </html>
