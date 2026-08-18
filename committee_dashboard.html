@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Committee Dashboard - 2026 EWS Camp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #2e1547;
+            --accent-gold: #c5a059;
+            --bg-light: #fdfbf7;
+            --text-dark: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0; padding: 0; background: var(--bg-light); color: var(--text-dark); line-height: 1.5;
+        }
+        header {
+            background: var(--primary-purple); color: white; padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        header h1 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--accent-gold); }
+        .logout-btn { background: transparent; border: 1px solid white; color: white; padding: 4px 10px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 600; }
+        .tab-bar { display: flex; background: white; border-bottom: 1px solid #ddd; }
+        .tab-btn { flex: 1; text-align: center; padding: 12px; background: none; border: none; font-weight: 700; font-size: 0.85rem; color: #666; cursor: pointer; border-bottom: 3px solid transparent; }
+        .tab-btn.active { color: var(--primary-purple); border-bottom-color: var(--primary-purple); }
+        .container { padding: 16px; max-width: 520px; margin: 0 auto; box-sizing: border-box; }
+        .panel { display: none; }
+        .panel.active { display: block; }
+        .card { background: white; padding: 16px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+        .section-title { font-size: 1rem; font-weight: 700; color: var(--primary-purple); margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px; }
+        
+        /* Check-in styles */
+        .room-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
+        .room-row:last-child { border: none; }
+        .room-info h5 { margin: 0; font-size: 0.9rem; color: #333; }
+        .room-info p { margin: 2px 0 0 0; font-size: 0.75rem; color: #777; }
+        .status-toggle { padding: 6px 12px; border-radius: 20px; border: 1px solid #ccc; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .status-toggle.checked { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+        .status-toggle.empty { background: #fafafa; color: #666; }
+
+        /* Issue tracker styles */
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px; color: var(--primary-purple); }
+        .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-family: inherit; font-size: 0.9rem; }
+        .submit-btn { width: 100%; padding: 10px; background: var(--primary-purple); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        
+        /* Issue Item Container Card */
+        .issue-item { 
+            border-left: 4px solid #f44336; 
+            padding: 12px; 
+            background: #fff8f8; 
+            border-radius: 0 12px 12px 0; 
+            margin-bottom: 14px; 
+            font-size: 0.85rem; 
+            position: relative;
+            border: 1px solid #eee;
+            border-left-width: 4px;
+            transition: all 0.2s ease;
+        }
+        .issue-header { display: flex; justify-content: space-between; font-weight: 700; color: var(--primary-purple); align-items: center; }
+        
+        /* Resolution Box Inside Card */
+        .resolution-wrapper { margin-top: 10px; padding-top: 8px; border-top: 1px dashed #ddd; }
+        .resolution-wrapper label { font-size: 0.75rem; font-weight: 700; color: #666; display: block; margin-bottom: 4px; }
+        .resolution-input { width: 100%; padding: 6px 8px; font-size: 0.82rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: inherit; background: #fff; color: #333; }
+        
+        /* Resolution Action Checkbox Container */
+        .resolve-action-container { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700; color: #2e7d32; margin-top: 10px; }
+        .resolve-checkbox { width: 16px; height: 16px; cursor: pointer; accent-color: #2e7d32; }
+
+        /* Greyed-off state modifier when checkbox is turned on */
+        .issue-item.resolved { 
+            border-left-color: #999 !important; 
+            background: #f5f5f5 !important; 
+            color: #888 !important;
+            opacity: 0.65;
+        }
+        .issue-item.resolved .issue-header { color: #777 !important; }
+        .issue-item.resolved .resolution-input { background: #eef2f3; color: #777; border-color: #ddd; }
+        .issue-item.resolved .resolve-action-container { color: #777 !important; }
+
+        .delete-issue-btn { position: absolute; right: 12px; top: 12px; background: none; border: none; color: #bbb; cursor: pointer; font-size: 0.9rem; }
+        .delete-issue-btn:hover { color: #f44336; }
+    </style>
+</head>
+<body>
+
+    <script>
+        if (sessionStorage.getItem("committee_authenticated") !== "true") {
+            window.location.href = "committee_gate.html";
+        }
+        function logout() {
+            sessionStorage.removeItem("committee_authenticated");
+            window.location.href = "committee_gate.html";
+        }
+    </script>
+
+    <header>
+        <h1><i class="fa-solid fa-users-gear"></i> EWS Committee Dashboard</h1>
+        <button class="logout-btn" onclick="logout()">Exit</button>
+    </header>
+
+    <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('checkin-panel', this)"><i class="fa-solid fa-bed"></i> Room Status</button>
+        <button class="tab-btn" onclick="switchTab('issues-panel', this)"><i class="fa-solid fa-triangle-exclamation"></i> Issue Log</button>
+    </div>
+
+    <div class="container">
+        
+        <div id="checkin-panel" class="panel active">
+            <div class="card">
+                <div class="section-title"><i class="fa-solid fa-door-closed"></i> Check-In / Check-Out Tracker</div>
+                <p style="font-size:0.75rem; color:#666; margin:-6px 0 15px 0;">Tap status pill badge to cycle states: <b>Vacant → Checked-In → Checked-Out</b></p>
+                <div id="roomsContainer"></div>
+            </div>
+        </div>
+
+        <div id="issues-panel" class="panel">
+            <div class="card">
+                <div class="section-title"><i class="fa-solid fa-circle-plus"></i> Report New Logged Issue</div>
+                <div class="form-group">
+                    <label>Location / Unit No</label>
+                    <input type="text" id="issueLoc" class="form-control" placeholder="e.g., Tokyo B - T11, Seminar Hall">
+                </div>
+                <div class="form-group">
+                    <label>Issue Description</label>
+                    <textarea id="issueDesc" class="form-control" rows="2" placeholder="e.g., Aircond water leakage, broken light bulb..."></textarea>
+                </div>
+                <button class="submit-btn" onclick="addIssue()">Log Live Issue</button>
+            </div>
+
+            <div class="card" style="background:transparent; border:none; padding:0; box-shadow:none;">
+                <div class="section-title" style="padding-left:10px;"><i class="fa-solid fa-list-check"></i> Active Maintenance Tracker</div>
+                <div id="issuesListContainer"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>KLANG CHINESE METHODIST CHURCH © 2026</footer>
+
+    <script>
+        function switchTab(panelId, btn) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        const officialRooms = [
+            { id: "T1", name: "Tokyo A - T1", desc: "Amy Sim, Timothy Lee & Family" },
+            { id: "T3", name: "Tokyo A - T3", desc: "David Kuah & Family" },
+            { id: "T08", name: "Tokyo B - T08", desc: "Teh Lay Hong, Anggelina, Susan Mah" },
+            { id: "T09", name: "Tokyo B - T09", desc: "Bishop Hwa Yung" },
+            { id: "T10", name: "Tokyo B - T10", desc: "Tan Peck Leong, Chew Wooi Yean" },
+            { id: "T11", name: "Tokyo B - T11", desc: "Ps. Lee Jun Yan, Isaiah, Frogen" },
+            { id: "T12", name: "Tokyo B - T12", desc: "Stanley Ding & Family" },
+            { id: "T13", name: "Tokyo B - T13", desc: "Ps Lucia Hii, Jamie Goh" },
+            { id: "T15", name: "Tokyo B - T15", desc: "Tan Choon Phark, Lim Lay Lee" },
+            { id: "T16", name: "Tokyo B - T16", desc: "Wong Ung Kwong, Tan Siew Li" },
+            { id: "T17", name: "Tokyo B - T17", desc: "Yap Kim Kee, Yap Beng See" },
+            { id: "T18", name: "Tokyo B - T18", desc: "David Teh, Jean Teh" },
+            { id: "T19", name: "Tokyo B - T19", desc: "Yap Beng Hooi, Tan Geok Sim" },
+            { id: "T20", name: "Tokyo B - T20", desc: "Joanne Teh, Joanne Chow, Laura, Grace" },
+            { id: "T21", name: "Tokyo B - T21", desc: "Tan Peck Hoon, Peck Luan, Peck Hong" },
+            { id: "T22", name: "Tokyo B - T22", desc: "Teh Wai Ling, Raymond Chang, Teoh Sok May" },
+            { id: "T23", name: "Tokyo B - T23", desc: "Sharon Chan, Chan Peng Fong, Mabel" },
+            { id: "T23A", name: "Tokyo B - T23A", desc: "Kang D-Way, John Lim, Beh Eng Seong" },
+            { id: "T25", name: "Tokyo B - T25", desc: "Ng Fiew Ching, Ching Ing Hoe, Lee Ai Bee" },
+            { id: "T27", name: "Tokyo B - T27", desc: "Tien Sen An, Nathan Liang, Lucas Lai" },
+            { id: "T7", name: "Tokyo C - T7", desc: "Esther Lim, Ng Ai Ling, Ee Ling, Vooi Ling" },
+            { id: "HKV", name: "HK Villa", desc: "Lim Sook Bee & Group (12 Pax)" }
+        ];
+
+        // --- Room Status Tracker ---
+        function loadRoomTracker() {
+            const container = document.getElementById('roomsContainer');
+            container.innerHTML = '';
+            officialRooms.forEach(room => {
+                const savedStatus = localStorage.getItem('ews2026_status_' + room.id) || "Vacant";
+                let badgeClass = "empty";
+                if(savedStatus === "Checked-In") badgeClass = "checked";
+                if(savedStatus === "Checked-Out") badgeClass = "";
+                container.innerHTML += `
+                    <div class="room-row">
+                        <div class="room-info">
+                            <h5>${room.name}</h5>
+                            <p>${room.desc}</p>
+                        </div>
+                        <button class="status-toggle ${badgeClass}" onclick="cycleRoomStatus('${room.id}', this)">${savedStatus}</button>
+                    </div>
+                `;
+            });
+        }
+
+        function cycleRoomStatus(roomId, element) {
+            const currentStatus = element.textContent.trim();
+            let nextStatus = "Vacant";
+            if (currentStatus === "Vacant") { nextStatus = "Checked-In"; element.className = "status-toggle checked"; }
+            else if (currentStatus === "Checked-In") { nextStatus = "Checked-Out"; element.className = "status-toggle"; }
+            else { nextStatus = "Vacant"; element.className = "status-toggle empty"; }
+            element.textContent = nextStatus;
+            localStorage.setItem('ews2026_status_' + roomId, nextStatus);
+        }
+
+        // --- Issue Log Tracker ---
+        function loadIssuesLog() {
+            const container = document.getElementById('issuesListContainer');
+            container.innerHTML = '';
+            const issues = JSON.parse(localStorage.getItem('ews2026_camp_issues') || "[]");
+
+            if(issues.length === 0) {
+                container.innerHTML = `<div class="card" style="text-align:center; color:#888; font-size:0.85rem;">No issues currently logged.</div>`;
+                return;
+            }
+
+            issues.forEach((issue, index) => {
+                const isResolved = issue.status === "Resolved";
+                const cardClass = isResolved ? "issue-item resolved" : "issue-item";
+                const checkedAttr = isResolved ? "checked" : "";
+
+                container.innerHTML += `
+                    <div class="${cardClass}" id="issue-card-${index}">
+                        <div class="issue-header">
+                            <span><i class="fa-solid fa-location-dot"></i> ${issue.location}</span>
+                            <button class="delete-issue-btn" onclick="deleteIssue(${index})"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                        <p style="margin:6px 0 10px 0; color:#444; font-weight:500;">${issue.description}</p>
+                        
+                        <div class="resolution-wrapper">
+                            <label>Resolution Action Notes</label>
+                            <input type="text" class="resolution-input" id="res-input-${index}" 
+                                value="${issue.resolution || ''}" oninput="saveResolution(${index}, this.value)" 
+                                placeholder="Describe how it was fixed..." ${isResolved ? 'disabled' : ''}>
+                        </div>
+
+                        <div class="resolve-action-container">
+                            <input type="checkbox" class="resolve-checkbox" id="check-${index}" 
+                                ${checkedAttr} onchange="toggleResolveCheckbox(${index}, this.checked)">
+                            <label style="cursor:pointer;" for="check-${index}">Mark Issue as Resolved</label>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addIssue() {
+            const loc = document.getElementById('issueLoc').value.trim();
+            const desc = document.getElementById('issueDesc').value.trim();
+            if(!loc || !desc) { alert("Please fill up location and description!"); return; }
+
+            const issues = JSON.parse(localStorage.getItem('ews2026_camp_issues') || "[]");
+            issues.push({ location: loc, description: desc, status: "Pending", resolution: "" });
+            localStorage.setItem('ews2026_camp_issues', JSON.stringify(issues));
+            
+            document.getElementById('issueLoc').value = '';
+            document.getElementById('issueDesc').value = '';
+            loadIssuesLog();
+        }
+
+        function saveResolution(index, value) {
+            const issues = JSON.parse(localStorage.getItem('ews2026_camp_issues') || "[]");
+            issues[index].resolution = value;
+            localStorage.setItem('ews2026_camp_issues', JSON.stringify(issues));
+        }
+
+        function toggleResolveCheckbox(index, checked) {
+            const issues = JSON.parse(localStorage.getItem('ews2026_camp_issues') || "[]");
+            issues[index].status = checked ? "Resolved" : "Pending";
+            localStorage.setItem('ews2026_camp_issues', JSON.stringify(issues));
+            
+            // Re-render to instantly update layout grey-out modifiers
+            loadIssuesLog();
+        }
+
+        function deleteIssue(index) {
+            if(confirm("Delete this issue record permanently?")) {
+                const issues = JSON.parse(localStorage.getItem('ews2026_camp_issues') || "[]");
+                issues.splice(index, 1);
+                localStorage.setItem('ews2026_camp_issues', JSON.stringify(issues));
+                loadIssuesLog();
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadRoomTracker();
+            loadIssuesLog();
+        });
+    </script>
+</body>
+</html>

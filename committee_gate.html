@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Committee Login - 2026 EWS Camp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #2e1547;
+            --secondary-purple: #4a2a6b;
+            --accent-gold: #e5c158;
+            --bg-light: #fdfbf7;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(180deg, var(--primary-purple) 0%, var(--secondary-purple) 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .login-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(197, 160, 89, 0.35);
+            backdrop-filter: blur(10px);
+            padding: 30px 24px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        h2 { margin: 0 0 8px 0; color: var(--accent-gold); font-size: 1.4rem; }
+        p { margin: 0 0 20px 0; font-size: 0.85rem; opacity: 0.8; }
+        .input-group { position: relative; margin-bottom: 16px; }
+        .input-group i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--accent-gold); }
+        .input-group input {
+            width: 100%;
+            padding: 12px 12px 12px 38px;
+            border: 1px solid rgba(197, 160, 89, 0.5);
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .input-group input:focus { border-color: var(--accent-gold); }
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-gold);
+            color: var(--primary-purple);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .login-btn:hover { background: white; }
+        #error-msg { color: #ff5252; font-size: 0.8rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div style="font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 10px;"><i class="fa-solid fa-user-shield"></i></div>
+        <h2>Committee Panel</h2>
+        <p>Enter administrative access passcode</p>
+        <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="passcode" placeholder="Enter Access Passcode" onkeypress="handleKeyPress(event)">
+        </div>
+        <button class="login-btn" onclick="checkAccess()">Verify Access</button>
+        <div id="error-msg"><i class="fa-solid fa-circle-exclamation"></i> Invalid Passcode! Please try again.</div>
+    </div>
+    <script>
+        function checkAccess() {
+            const pass = document.getElementById('passcode').value.trim();
+            // You can change your admin password string right here:
+            if (pass === "EWS2026Admin") {
+                sessionStorage.setItem("committee_authenticated", "true");
+                window.location.href = "committee_dashboard.html";
+            } else {
+                document.getElementById('error-msg').style.display = "block";
+            }
+        }
+        function handleKeyPress(e) { if(e.key === 'Enter') checkAccess(); }
+    </script>
+</body>
+</html>
