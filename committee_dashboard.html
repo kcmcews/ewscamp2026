@@ -136,6 +136,39 @@
             color: var(--accent-gold);
         }
 
+        /* Search input wrapper */
+        .search-box-wrapper {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-box-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 0.95rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px 10px 38px;
+            border: 1.5px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            transition: 0.2s;
+            background: #fafafa;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-purple);
+            background: white;
+        }
+
         /* Check-in styles */
         .room-row {
             display: flex;
@@ -143,9 +176,14 @@
             align-items: center;
             padding: 12px 0;
             border-bottom: 1px solid #f2f2f2;
+            gap: 10px;
         }
 
         .room-row:last-child { border: none; }
+
+        .room-info {
+            flex: 1;
+        }
 
         .room-info h5 {
             margin: 0;
@@ -156,8 +194,29 @@
 
         .room-info p {
             margin: 2px 0 0 0;
-            font-size: 0.78rem;
-            color: #777;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .timestamp-tag {
+            display: inline-block;
+            margin-top: 4px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .timestamp-tag.in {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .timestamp-tag.out {
+            background: #ede7f6;
+            color: #512da8;
         }
 
         .status-toggle {
@@ -168,12 +227,19 @@
             font-weight: 700;
             cursor: pointer;
             transition: 0.2s;
+            white-space: nowrap;
         }
 
         .status-toggle.checked {
             background: #e8f5e9;
             color: #2e7d32;
             border-color: #a5d6a7;
+        }
+
+        .status-toggle.checkedout {
+            background: #ede7f6;
+            color: #512da8;
+            border-color: #d1c4e9;
         }
 
         .status-toggle.empty {
@@ -293,7 +359,6 @@
             accent-color: #2e7d32;
         }
 
-        /* Greyed-off state when resolved */
         .issue-item.resolved {
             border-left-color: #999 !important;
             background: #f7f7f7 !important;
@@ -359,7 +424,14 @@
         <div id="checkin-panel" class="panel active">
             <div class="card-section">
                 <h2 class="section-title"><i class="fa-solid fa-door-closed"></i> Check-In / Check-Out Tracker</h2>
-                <p style="font-size:0.78rem; color:#666; margin:-6px 0 16px 0;">Tap status button to cycle states: <b>Vacant → Checked-In → Checked-Out</b></p>
+                <p style="font-size:0.78rem; color:#666; margin:-6px 0 14px 0;">Tap status button to cycle states: <b>Vacant → Checked-In → Checked-Out</b></p>
+                
+                <!-- Search Box -->
+                <div class="search-box-wrapper">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="roomSearchInput" class="search-input" placeholder="Search camper name or unit..." oninput="filterRooms()">
+                </div>
+
                 <div id="roomsContainer"></div>
             </div>
         </div>
@@ -424,42 +496,88 @@
             { id: "HKV", name: "HK Villa", desc: "Lim Sook Bee & Group (12 Pax)" }
         ];
 
+        // Format Date Time: "Aug 19, 2:38 PM"
+        function getFormattedTimestamp() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            return `${dateStr}, ${timeStr}`;
+        }
+
         // --- Room Status Tracker ---
-        function loadRoomTracker() {
+        function loadRoomTracker(filterKeyword = "") {
             const container = document.getElementById('roomsContainer');
             container.innerHTML = '';
-            officialRooms.forEach(room => {
+            
+            const keyword = filterKeyword.toLowerCase().trim();
+            const filteredRooms = officialRooms.filter(room => 
+                room.name.toLowerCase().includes(keyword) || 
+                room.desc.toLowerCase().includes(keyword)
+            );
+
+            if (filteredRooms.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:#888; font-size:0.85rem; padding: 20px 0;">No matching rooms or names found.</p>`;
+                return;
+            }
+
+            filteredRooms.forEach(room => {
                 const savedStatus = localStorage.getItem('ews2026_status_' + room.id) || "Vacant";
+                const savedTime = localStorage.getItem('ews2026_time_' + room.id) || "";
+                
                 let badgeClass = "empty";
-                if(savedStatus === "Checked-In") badgeClass = "checked";
-                if(savedStatus === "Checked-Out") badgeClass = "";
+                let stampHtml = "";
+
+                if (savedStatus === "Checked-In") {
+                    badgeClass = "checked";
+                    stampHtml = savedTime ? `<div class="timestamp-tag in"><i class="fa-regular fa-clock"></i> In: ${savedTime}</div>` : "";
+                } else if (savedStatus === "Checked-Out") {
+                    badgeClass = "checkedout";
+                    stampHtml = savedTime ? `<div class="timestamp-tag out"><i class="fa-regular fa-clock"></i> Out: ${savedTime}</div>` : "";
+                }
+
                 container.innerHTML += `
                     <div class="room-row">
                         <div class="room-info">
                             <h5>${room.name}</h5>
                             <p>${room.desc}</p>
+                            ${stampHtml}
                         </div>
-                        <button class="status-toggle ${badgeClass}" onclick="cycleRoomStatus('${room.id}', this)">${savedStatus}</button>
+                        <button class="status-toggle ${badgeClass}" onclick="cycleRoomStatus('${room.id}')">${savedStatus}</button>
                     </div>
                 `;
             });
         }
 
-        function cycleRoomStatus(roomId, element) {
-            const currentStatus = element.textContent.trim();
+        function filterRooms() {
+            const query = document.getElementById('roomSearchInput').value;
+            loadRoomTracker(query);
+        }
+
+        function cycleRoomStatus(roomId) {
+            const currentStatus = localStorage.getItem('ews2026_status_' + roomId) || "Vacant";
             let nextStatus = "Vacant";
+            let timestamp = "";
+
             if (currentStatus === "Vacant") { 
                 nextStatus = "Checked-In"; 
-                element.className = "status-toggle checked"; 
+                timestamp = getFormattedTimestamp();
             } else if (currentStatus === "Checked-In") { 
                 nextStatus = "Checked-Out"; 
-                element.className = "status-toggle"; 
+                timestamp = getFormattedTimestamp();
             } else { 
                 nextStatus = "Vacant"; 
-                element.className = "status-toggle empty"; 
+                timestamp = "";
             }
-            element.textContent = nextStatus;
+
             localStorage.setItem('ews2026_status_' + roomId, nextStatus);
+            if (timestamp) {
+                localStorage.setItem('ews2026_time_' + roomId, timestamp);
+            } else {
+                localStorage.removeItem('ews2026_time_' + roomId);
+            }
+
+            const currentSearch = document.getElementById('roomSearchInput').value;
+            loadRoomTracker(currentSearch);
         }
 
         // --- Issue Log Tracker ---
