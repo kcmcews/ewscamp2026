@@ -118,15 +118,13 @@
             padding: 14px 16px;
             border-radius: 8px;
             font-style: italic;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             font-size: 0.95rem;
             color: #444;
         }
 
-        .scripture-box p {
-            margin: 0 0 6px 0;
-        }
-
+        .scripture-box p { margin: 0 0 6px 0; }
+        .scripture-box p:last-child { margin-bottom: 0; }
         .scripture-box .ref-tag {
             font-style: normal;
             font-weight: bold;
@@ -136,21 +134,146 @@
             margin-top: 4px;
         }
 
-        .placeholder-box {
-            background: #f9f9f9;
-            border: 2px dashed #ddd;
-            border-radius: 10px;
-            padding: 25px 15px;
-            text-align: center;
-            color: #888;
-            font-size: 0.9rem;
+        /* Outline List Styling */
+        .outline-list {
+            padding-left: 20px;
+            margin: 0;
         }
 
-        .placeholder-box i {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
+        .outline-list li {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .outline-sublist {
+            padding-left: 20px;
+            margin-top: 4px;
+            list-style-type: circle;
+        }
+
+        .outline-sublist li {
+            margin-bottom: 4px;
+            color: #555;
+        }
+
+        .outline-heading {
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-top: 14px;
+            margin-bottom: 6px;
+            font-size: 1rem;
+        }
+
+        /* Inline Verse Callouts */
+        .verse-callout {
+            color: #b8860b;
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: #fff9e6;
+            padding: 1px 6px;
+            border-radius: 4px;
+            border: 1px solid rgba(229, 193, 88, 0.3);
+        }
+
+        /* Interactive Note-Writing and Answer Areas */
+        .notes-area-wrapper {
+            margin: 12px 0 20px 0;
+            background: #fdfcf7;
+            border: 1px dashed var(--accent-gold);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .notes-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .save-indicator {
+            font-size: 0.75rem;
+            color: #2e7d32;
+            font-weight: normal;
+            margin-left: auto;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .save-indicator.show { opacity: 1; }
+
+        .notes-input {
+            width: 100%;
+            min-height: 70px;
+            border: none;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.5);
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            color: #a17828;
+            padding: 4px 0;
+            outline: none;
+        }
+
+        .notes-input:focus {
+            border-bottom: 1.5px solid var(--primary-purple);
+        }
+
+        /* Discussion Questions Layout */
+        .question-item {
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+
+        .question-num {
+            font-weight: 800;
+            color: var(--primary-purple);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 4px;
             display: block;
-            color: #bbb;
+        }
+
+        .question-text {
+            font-size: 0.95rem;
+            color: #333;
+            margin: 0 0 10px 0;
+        }
+
+        /* Recommended Books Box */
+        .book-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .book-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.88rem;
+            color: #444;
+        }
+
+        .book-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .book-item i {
+            color: var(--accent-gold);
+            margin-top: 4px;
+            font-size: 0.9rem;
         }
 
         footer {
@@ -176,7 +299,7 @@
 
         <div class="page-header">
             <span class="badge">Theme Talk 3</span>
-            <h1 class="page-title">HOLINESS & HEALING OF OUR BROKENNESS</h1>
+            <h1 class="page-title">Shining As Stars (3): Holiness and Healing of our Brokenness</h1>
             <p class="scripture-ref"><i class="fa-solid fa-book-bookmark"></i> Romans 5:1-5 (ESV)</p>
         </div>
 
@@ -184,14 +307,90 @@
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-scroll"></i> Sermon Outlines</h2>
             
+            <!-- Scripture Box -->
             <div class="scripture-box">
                 <p>“Therefore, since we have been justified by faith, we have peace with God through our Lord Jesus Christ. Through him we have also obtained access by faith into this grace in which we stand, and we rejoice in hope of the glory of God. Not only that, but we rejoice in our sufferings, knowing that suffering produces endurance, and endurance produces character, and character produces hope, and hope does not put us to shame, because God's love has been poured into our hearts through the Holy Spirit who has been given to us.”</p>
                 <span class="ref-tag">— Romans 5:1-5 (ESV)</span>
             </div>
 
-            <div class="placeholder-box" style="margin-top: 15px;">
-                <i class="fa-solid fa-pen-to-square"></i>
-                Sermon notes and outline will be provided by the speaker.
+            <!-- Outline Point 1 -->
+            <div class="outline-heading">1. Introduction: Coming to Terms with My Broken Self</div>
+            <ul class="outline-list">
+                <li>We must dare to confront ourselves and our own wounds and brokenness.</li>
+                <li><b>Why?</b> Because very often it is our unhealed wounds that hinder our growth in holiness.</li>
+                <li>Two examples:
+                    <ul class="outline-sublist">
+                        <li>Friend at Bristol who would not face his own deep insecurity.</li>
+                        <li>Student who had to face her childhood pains to find healing.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Notes area 1 -->
+            <div class="notes-area-wrapper">
+                <div class="notes-label">
+                    <i class="fa-solid fa-pen-fancy"></i> Notes (Section 1)
+                    <span class="save-indicator" id="indicator-note-1"><i class="fa-solid fa-cloud-arrow-up"></i> Saved</span>
+                </div>
+                <textarea class="notes-input auto-save" data-save-key="talk3_notes_1" placeholder="Type your personal sermon notes here..."></textarea>
+            </div>
+
+            <!-- Outline Point 2 -->
+            <div class="outline-heading">2. Causes of Wounds in Our Lives</div>
+            <ul class="outline-list">
+                <li><b>Love deficit in our growing years:</b> Babies in orphanages are known to die without “sensing” love.</li>
+                <li><b>Sense of rejection:</b> Illegitimate child, unwanted baby, or 2nd Chinese daughter syndrome.</li>
+                <li><b>Over-controlling (even smothering) mothers:</b> Men with such mothers often face challenges in relationships with women (Monty Barker, Consultant Psychiatrist). Research also links smothering mothers combined with absentee fathers to relational struggles.</li>
+                <li><b>Growing up with shame:</b> Poverty, childhood sexual abuse, neglect, etc.</li>
+                <li><b>Deep insecurities:</b> Academic performance, physical beauty, money, social status, etc.</li>
+            </ul>
+
+            <!-- Notes area 2 -->
+            <div class="notes-area-wrapper">
+                <div class="notes-label">
+                    <i class="fa-solid fa-pen-fancy"></i> Notes (Section 2)
+                    <span class="save-indicator" id="indicator-note-2"><i class="fa-solid fa-cloud-arrow-up"></i> Saved</span>
+                </div>
+                <textarea class="notes-input auto-save" data-save-key="talk3_notes_2" placeholder="Type your personal sermon notes here..."></textarea>
+            </div>
+
+            <!-- Outline Point 3 -->
+            <div class="outline-heading">3. The Path to Healing</div>
+            <ul class="outline-list">
+                <li><b>Some hindrances to healing:</b>
+                    <ul class="outline-sublist">
+                        <li>Lack of self-acceptance and self-hatred.</li>
+                        <li>Failure to forgive others.</li>
+                        <li>Failure to receive forgiveness.</li>
+                    </ul>
+                </li>
+                <li><b>The Gospel’s Answer <span class="verse-callout">Rom 5:1-5</span>:</b> Points us to the love of God and His total acceptance of us as the only adequate answer to our pains and wounds.</li>
+            </ul>
+
+            <!-- Notes area 3 -->
+            <div class="notes-area-wrapper">
+                <div class="notes-label">
+                    <i class="fa-solid fa-pen-fancy"></i> Notes (Section 3)
+                    <span class="save-indicator" id="indicator-note-3"><i class="fa-solid fa-cloud-arrow-up"></i> Saved</span>
+                </div>
+                <textarea class="notes-input auto-save" data-save-key="talk3_notes_3" placeholder="Type your personal sermon notes here..."></textarea>
+            </div>
+
+            <!-- Outline Point 4 -->
+            <div class="outline-heading">4. Transformed to be Like Christ</div>
+            <ul class="outline-list">
+                <li>God is actively seeking to bring healing into our lives.</li>
+                <li>We must be courageous enough to face our brokenness and allow God to enter.</li>
+                <li>This requires us to cooperate fully with God. Those who are willing to let God into their lives will be transformed!</li>
+            </ul>
+
+            <!-- Notes area 4 -->
+            <div class="notes-area-wrapper">
+                <div class="notes-label">
+                    <i class="fa-solid fa-pen-fancy"></i> Notes (Section 4)
+                    <span class="save-indicator" id="indicator-note-4"><i class="fa-solid fa-cloud-arrow-up"></i> Saved</span>
+                </div>
+                <textarea class="notes-input auto-save" data-save-key="talk3_notes_4" placeholder="Type your personal sermon notes here..."></textarea>
             </div>
         </div>
 
@@ -199,10 +398,58 @@
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-comments"></i> Group Discussion Questions</h2>
             
-            <div class="placeholder-box">
-                <i class="fa-solid fa-hourglass-half"></i>
-                Discussion questions are pending speaker input and will be updated soon.
+            <!-- Question 1 -->
+            <div class="question-item">
+                <span class="question-num">Question 1</span>
+                <p class="question-text">How much do you know <b>YOURSELF</b> with respect to your spiritual and emotional wounds and brokenness? Have you consciously accepted yourself and God’s love and healing?</p>
+                <div class="notes-area-wrapper" style="margin-bottom:0; background:white;">
+                    <div class="notes-label"><i class="fa-regular fa-comment-dots"></i> Your Answer <span class="save-indicator" id="indicator-q-1">Saved</span></div>
+                    <textarea class="notes-input auto-save" data-save-key="talk3_q_1" placeholder="Write down your group answer or response..."></textarea>
+                </div>
             </div>
+
+            <!-- Question 2 -->
+            <div class="question-item">
+                <span class="question-num">Question 2</span>
+                <p class="question-text">How much do you think your relationships with others are being driven by your wounds, brokenness and insecurities and theirs? How are you coping and addressing these relationships?</p>
+                <div class="notes-area-wrapper" style="margin-bottom:0; background:white;">
+                    <div class="notes-label"><i class="fa-regular fa-comment-dots"></i> Your Answer <span class="save-indicator" id="indicator-q-2">Saved</span></div>
+                    <textarea class="notes-input auto-save" data-save-key="talk3_q_2" placeholder="Write down your group answer or response..."></textarea>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-item">
+                <span class="question-num">Question 3</span>
+                <p class="question-text">What would it take for each of us to grow into a wholesome and mature person marked by humility and love?</p>
+                <div class="notes-area-wrapper" style="margin-bottom:0; background:white;">
+                    <div class="notes-label"><i class="fa-regular fa-comment-dots"></i> Your Answer <span class="save-indicator" id="indicator-q-3">Saved</span></div>
+                    <textarea class="notes-input auto-save" data-save-key="talk3_q_3" placeholder="Write down your group answer or response..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Recommended Reading -->
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-book"></i> Books on Healing & Holiness</h2>
+            <ul class="book-list">
+                <li class="book-item">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <div><b>Floyd McClung Jr.</b>, <i>The Father Heart of God</i> (Harvest House, 1985)</div>
+                </li>
+                <li class="book-item">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <div><b>Leanne Payne</b>, <i>Restoring the Christian Soul: Overcoming Barriers to Completion in Christ through Healing Prayer</i> (Baker, 1991)</div>
+                </li>
+                <li class="book-item">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <div><b>Stephen Seamands</b>, <i>Wounds that Heal: Bringing our Hurts to the Cross</i> (IVP Books, 2003)</div>
+                </li>
+                <li class="book-item">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <div><b>John White</b>, <i>Changing on the Inside: The Key to Spiritual Recovery and Lasting Change</i> (Servant Publications, 1991)</div>
+                </li>
+            </ul>
         </div>
 
     </div>
@@ -210,6 +457,37 @@
     <footer>
         KLANG CHINESE METHODIST CHURCH © 2026
     </footer>
+
+    <!-- Async Local Storage Auto-Saving Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const inputs = document.querySelectorAll('.auto-save');
+
+            inputs.forEach((input) => {
+                const cacheKey = "ews2026_" + input.getAttribute('data-save-key');
+                const indicatorId = input.previousElementSibling.querySelector('.save-indicator');
+
+                // 1. Initial State Restoration
+                const cachedData = localStorage.getItem(cacheKey);
+                if (cachedData !== null) {
+                    input.value = cachedData;
+                }
+
+                // 2. Real-time Async Persistence
+                input.addEventListener('input', (e) => {
+                    localStorage.setItem(cacheKey, e.target.value);
+                    
+                    if(indicatorId) {
+                        indicatorId.classList.add('show');
+                        clearTimeout(input.saveTimeout);
+                        input.saveTimeout = setTimeout(() => {
+                            indicatorId.classList.remove('show');
+                        }, 1000);
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
