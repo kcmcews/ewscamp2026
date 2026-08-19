@@ -23,72 +23,26 @@
             line-height: 1.6;
         }
 
-        /* Top Navigation Bar with Quick Navigation Actions */
         nav {
             background: white;
-            padding: 10px 16px;
+            padding: 15px 20px;
             border-bottom: 1px solid #eee;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .back-btn {
             text-decoration: none;
             color: var(--primary-purple);
-            font-weight: 700;
+            font-weight: bold;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            font-size: 0.95rem;
-            padding: 8px 12px;
-            border-radius: 8px;
-            background: #faf8f5;
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            white-space: nowrap;
-            transition: 0.2s ease;
+            font-size: 1.05rem;
         }
 
-        .back-btn:hover {
-            background: #f0ebe1;
-        }
-
-        .back-btn i { margin-right: 6px; }
-
-        .nav-actions {
-            display: flex;
-            gap: 8px;
-            flex: 1;
-            justify-content: flex-end;
-        }
-
-        .app-btn-card, 
-        .app-btn-card:visited, 
-        .app-btn-card:link {
-            padding: 8px 12px;
-            border-radius: 8px;
-            text-decoration: none !important;
-            color: white !important;
-            background: var(--primary-purple);
-            border: 1px solid var(--accent-gold);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .app-btn-card:hover, .app-btn-card:active {
-            background: var(--accent-gold);
-            color: var(--primary-purple) !important;
-        }
+        .back-btn i { margin-right: 8px; }
 
         .container {
             padding: 20px;
@@ -143,6 +97,37 @@
         .section-title i {
             margin-right: 10px;
             color: var(--accent-gold);
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons-bar {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .app-btn-card, 
+        .app-btn-card:visited, 
+        .app-btn-card:link {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            text-decoration: none !important;
+            color: white !important;
+            background: var(--primary-purple);
+            border: 1px solid var(--accent-gold);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .app-btn-card:hover, .app-btn-card:active {
+            background: var(--accent-gold);
+            color: var(--primary-purple) !important;
         }
 
         /* Banner / Camp Info Image Styling */
@@ -329,16 +314,8 @@
 
     <nav>
         <a href="index.html" class="back-btn">
-            <i class="fa-solid fa-chevron-left"></i> Back
+            <i class="fa-solid fa-chevron-left"></i> Back to Main
         </a>
-        <div class="nav-actions">
-            <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="app-btn-card">
-                <i class="fa-brands fa-waze"></i> Waze
-            </a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Twin+Jets+Resort+Broga" target="_blank" class="app-btn-card">
-                <i class="fa-solid fa-map-pin"></i> Maps
-            </a>
-        </div>
     </nav>
 
     <div class="container">
@@ -416,7 +393,22 @@
             </div>
         </div>
 
-        <!-- Section 3: Room & Accommodation -->
+        <!-- Section 3: Venue & Navigation (Restored App Button Cards) -->
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-map-location-dot"></i> Venue & Navigation</h2>
+            <div style="font-size: 0.95rem; font-weight: 700; color: var(--primary-purple);">Twin Jets Resort, Broga</div>
+            
+            <div class="nav-buttons-bar">
+                <a href="https://waze.com/ul/hw282xn1mq" target="_blank" class="app-btn-card">
+                    <i class="fa-brands fa-waze"></i> Open Waze
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Twin+Jets+Resort+Broga" target="_blank" class="app-btn-card">
+                    <i class="fa-solid fa-map-pin"></i> Google Maps
+                </a>
+            </div>
+        </div>
+
+        <!-- Section 4: Room & Accommodation -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-bed"></i> Accommodation</h2>
             <a href="room_list.html" class="action-card">
@@ -429,7 +421,7 @@
             </a>
         </div>
 
-        <!-- Section 4: Photo Sharing -->
+        <!-- Section 5: Photo Sharing -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-camera-retro"></i> Camp Memories</h2>
             <a href="https://photos.app.goo.gl/mockup_link_ews2026" target="_blank" class="action-card">
@@ -442,7 +434,7 @@
             </a>
         </div>
 
-        <!-- Section 5: Do's and Don'ts -->
+        <!-- Section 6: Do's and Don'ts -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-clipboard-check"></i> Camp Guidelines</h2>
             
