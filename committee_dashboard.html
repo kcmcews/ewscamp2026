@@ -198,15 +198,18 @@
             color: #555;
         }
 
-        .timestamp-tag {
-            display: inline-block;
+        .timestamps-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
             margin-top: 4px;
+        }
+
+        .timestamp-tag {
             font-size: 0.72rem;
             font-weight: 600;
             padding: 2px 6px;
             border-radius: 4px;
-            background: #f0f0f0;
-            color: #666;
         }
 
         .timestamp-tag.in {
@@ -522,17 +525,27 @@
 
             filteredRooms.forEach(room => {
                 const savedStatus = localStorage.getItem('ews2026_status_' + room.id) || "Vacant";
-                const savedTime = localStorage.getItem('ews2026_time_' + room.id) || "";
+                const checkInTime = localStorage.getItem('ews2026_checkin_time_' + room.id) || "";
+                const checkOutTime = localStorage.getItem('ews2026_checkout_time_' + room.id) || "";
                 
                 let badgeClass = "empty";
-                let stampHtml = "";
-
                 if (savedStatus === "Checked-In") {
                     badgeClass = "checked";
-                    stampHtml = savedTime ? `<div class="timestamp-tag in"><i class="fa-regular fa-clock"></i> In: ${savedTime}</div>` : "";
                 } else if (savedStatus === "Checked-Out") {
                     badgeClass = "checkedout";
-                    stampHtml = savedTime ? `<div class="timestamp-tag out"><i class="fa-regular fa-clock"></i> Out: ${savedTime}</div>` : "";
+                }
+
+                // Render both timestamps if available
+                let stampsHtml = "";
+                if (checkInTime || checkOutTime) {
+                    stampsHtml += `<div class="timestamps-row">`;
+                    if (checkInTime) {
+                        stampsHtml += `<span class="timestamp-tag in"><i class="fa-regular fa-clock"></i> In: ${checkInTime}</span>`;
+                    }
+                    if (checkOutTime) {
+                        stampsHtml += `<span class="timestamp-tag out"><i class="fa-regular fa-clock"></i> Out: ${checkOutTime}</span>`;
+                    }
+                    stampsHtml += `</div>`;
                 }
 
                 container.innerHTML += `
@@ -540,7 +553,7 @@
                         <div class="room-info">
                             <h5>${room.name}</h5>
                             <p>${room.desc}</p>
-                            ${stampHtml}
+                            ${stampsHtml}
                         </div>
                         <button class="status-toggle ${badgeClass}" onclick="cycleRoomStatus('${room.id}')">${savedStatus}</button>
                     </div>
@@ -556,25 +569,21 @@
         function cycleRoomStatus(roomId) {
             const currentStatus = localStorage.getItem('ews2026_status_' + roomId) || "Vacant";
             let nextStatus = "Vacant";
-            let timestamp = "";
 
             if (currentStatus === "Vacant") { 
                 nextStatus = "Checked-In"; 
-                timestamp = getFormattedTimestamp();
+                localStorage.setItem('ews2026_checkin_time_' + roomId, getFormattedTimestamp());
             } else if (currentStatus === "Checked-In") { 
                 nextStatus = "Checked-Out"; 
-                timestamp = getFormattedTimestamp();
+                localStorage.setItem('ews2026_checkout_time_' + roomId, getFormattedTimestamp());
             } else { 
+                // Resetting to Vacant clears both records
                 nextStatus = "Vacant"; 
-                timestamp = "";
+                localStorage.removeItem('ews2026_checkin_time_' + roomId);
+                localStorage.removeItem('ews2026_checkout_time_' + roomId);
             }
 
             localStorage.setItem('ews2026_status_' + roomId, nextStatus);
-            if (timestamp) {
-                localStorage.setItem('ews2026_time_' + roomId, timestamp);
-            } else {
-                localStorage.removeItem('ews2026_time_' + roomId);
-            }
 
             const currentSearch = document.getElementById('roomSearchInput').value;
             loadRoomTracker(currentSearch);
