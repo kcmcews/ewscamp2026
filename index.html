@@ -51,37 +51,44 @@
         .main-title {
             font-size: 2.2rem;
             font-weight: 800;
-            margin: 10px 0;
+            margin: 10px 0 12px 0;
             color: #ffffff;
             letter-spacing: 0.5px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .slogan {
-            font-size: 0.9rem;
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            padding: 8px 20px;
-            border-radius: 20px;
+        /* Option A: Modern Minimal Inline Badge */
+        .slogan-badge-modern {
             display: inline-flex;
-            flex-direction: column;
-            background: rgba(197, 160, 89, 0.1);
-        }
-
-        .slogan-text {
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            display: flex;
             align-items: center;
+            gap: 8px;
+            background: rgba(229, 193, 88, 0.12);
+            border: 1px solid rgba(229, 193, 88, 0.4);
+            padding: 6px 16px;
+            border-radius: 25px;
+            color: var(--accent-gold);
+            font-size: 0.88rem;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
 
-        .verse {
-            font-size: 0.7rem !important;
-            font-style: italic !important;
-            opacity: 0.85;
-            text-align: right;
-            width: 100%;
-            margin-top: 2px;
+        .slogan-badge-modern i {
+            font-size: 0.8rem;
+        }
+
+        .slogan-badge-modern .theme-title {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .slogan-badge-modern .dot-separator {
+            opacity: 0.5;
+        }
+
+        .slogan-badge-modern .verse-ref {
+            font-size: 0.78rem;
+            font-style: italic;
+            opacity: 0.9;
         }
         
         /* Navigation Container */
@@ -279,11 +286,11 @@
     <header class="header-section">
         <div class="church-name">Klang Chinese Methodist Church</div>
         <div class="main-title">2026 EWS Camp</div>
-        <div class="slogan">
-            <div class="slogan-text">
-                <i class="fa-solid fa-star" style="font-size: 0.75rem; margin-right: 4px;"></i> Shining as Stars
-            </div>
-            <div class="verse">Phil 2:15</div>
+        <div class="slogan-badge-modern">
+            <i class="fa-solid fa-star"></i>
+            <span class="theme-title">Shining as Stars</span>
+            <span class="dot-separator">•</span>
+            <span class="verse-ref">Phil 2:15</span>
         </div>
     </header>
 
@@ -291,7 +298,7 @@
         
         <!-- Main Menu -->
         <div id="main-menu-view">
-            <!-- 1. Camp Information (Moved to Top) -->
+            <!-- 1. Camp Information -->
             <a href="camp_info.html" class="nav-card">
                 <div class="circle-icon"><i class="fa-solid fa-circle-info"></i></div>
                 <div class="nav-text">
