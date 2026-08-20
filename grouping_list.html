@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Discussion - Grouping List - 2026 EWS Camp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #2e1547;
+            --secondary-purple: #4a2a6b;
+            --accent-gold: #c5a059;
+            --bg-light: #fdfbf7;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        nav {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--primary-purple);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+
+        .back-btn i { margin-right: 8px; }
+
+        .container {
+            padding: 20px;
+            max-width: 520px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .page-header {
+            background: white;
+            padding: 22px 20px;
+            border-radius: 20px;
+            border-top: 6px solid var(--primary-purple);
+            box-shadow: 0 4px 15px rgba(74, 42, 107, 0.05);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .page-title {
+            color: var(--primary-purple);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 0 4px 0;
+        }
+
+        .card-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin: 0 0 14px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid rgba(74, 42, 107, 0.1);
+            padding-bottom: 8px;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--accent-gold);
+        }
+
+        /* Search Bar Styling */
+        .search-box {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            border: 1.5px solid var(--accent-gold);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            background: #fdfcf9;
+            color: var(--text-dark);
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(74, 42, 107, 0.1);
+            background: #ffffff;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        /* Group Cards */
+        .group-card {
+            background: #faf8f5;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .group-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed rgba(197, 160, 89, 0.4);
+            padding-bottom: 6px;
+        }
+
+        .group-name {
+            font-weight: 800;
+            color: var(--primary-purple);
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .group-badge {
+            font-size: 0.75rem;
+            background: var(--primary-purple);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .member-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .member-tag {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 5px 10px;
+            font-size: 0.85rem;
+            color: #444;
+            display: inline-flex;
+            align-items: center;
+            transition: 0.2s;
+        }
+
+        .member-tag .num {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #888;
+            margin-right: 6px;
+        }
+
+        .member-tag.highlight {
+            background: var(--accent-gold);
+            color: var(--primary-purple);
+            font-weight: 700;
+            border-color: var(--accent-gold);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .member-tag.highlight .num {
+            color: var(--primary-purple);
+        }
+
+        #no-results {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 30px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-chevron-left"></i> Back to Main
+        </a>
+    </nav>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1 class="page-title">Group Discussion</h1>
+            <p style="font-size: 0.85rem; color: #666; margin: 4px 0 0;">2026 EWS Camp • Grouping List</p>
+        </div>
+
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-users"></i> Discussion Groups</h2>
+
+            <!-- Search by Name Bar -->
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="nameSearch" onkeyup="filterGroups()" placeholder="Search participant name...">
+            </div>
+
+            <div id="groupListContainer">
+
+                <!-- GROUP A -->
+                <div class="group-card">
+                    <div class="group-header">
+                        <span class="group-name"><i class="fa-solid fa-people-group" style="color:var(--accent-gold);"></i> GROUP A</span>
+                        <span class="group-badge">8 Pax</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><span class="num">1.</span> Ps. Lee Jun Yan</span>
+                        <span class="member-tag"><span class="num">2.</span> Stanley Ding</span>
+                        <span class="member-tag"><span class="num">3.</span> Yap Kim Kee</span>
+                        <span class="member-tag"><span class="num">4.</span> Mabel Choo</span>
+                        <span class="member-tag"><span class="num">5.</span> Teh Wai Ling</span>
+                        <span class="member-tag"><span class="num">6.</span> Kang D-Way</span>
+                        <span class="member-tag"><span class="num">7.</span> The Swee Seng</span>
+                        <span class="member-tag"><span class="num">8.</span> Chew Wooi Yean</span>
+                    </div>
+                </div>
+
+                <!-- GROUP B -->
+                <div class="group-card">
+                    <div class="group-header">
+                        <span class="group-name"><i class="fa-solid fa-people-group" style="color:var(--accent-gold);"></i> GROUP B</span>
+                        <span class="group-badge">7 Pax</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><span class="num">1.</span> Isaiah Tan</span>
+                        <span class="member-tag"><span class="num">2.</span> Lily Lim</span>
+                        <span class="member-tag"><span class="num">3.</span> Yap Beng See</span>
+                        <span class="member-tag"><span class="num">4.</span> Wong Ung Kwong</span>
+                        <span class="member-tag"><span class="num">5.</span> Raymond Chang</span>
+                        <span class="member-tag"><span class="num">6.</span> John Lim</span>
+                        <span class="member-tag"><span class="num">7.</span> Cynthia Tan</span>
+                    </div>
+                </div>
+
+                <!-- GROUP C -->
+                <div class="group-card">
+                    <div class="group-header">
+                        <span class="group-name"><i class="fa-solid fa-people-group" style="color:var(--accent-gold);"></i> GROUP C</span>
+                        <span class="group-badge">8 Pax</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><span class="num">1.</span> Frogen Teh</span>
+                        <span class="member-tag"><span class="num">2.</span> Chan Peng Fong</span>
+                        <span class="member-tag"><span class="num">3.</span> Yap Beng Hooi</span>
+                        <span class="member-tag"><span class="num">4.</span> Tan Siew Li</span>
+                        <span class="member-tag"><span class="num">5.</span> Teoh Sok May</span>
+                        <span class="member-tag"><span class="num">6.</span> Beh Eng Seong</span>
+                        <span class="member-tag"><span class="num">7.</span> Renate Johnston</span>
+                        <span class="member-tag"><span class="num">8.</span> Lim Lay Lee</span>
+                    </div>
+                </div>
+
+                <!-- GROUP D -->
+                <div class="group-card">
+                    <div class="group-header">
+                        <span class="group-name"><i class="fa-solid fa-people-group" style="color:var(--accent-gold);"></i> GROUP D</span>
+                        <span class="group-badge">7 Pax</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><span class="num">1.</span> Ps Lucia Hii</span>
+                        <span class="member-tag"><span class="num">2.</span> Daryn Ding</span>
+                        <span class="member-tag"><span class="num">3.</span> Tan Geok Sim</span>
+                        <span class="member-tag"><span class="num">4.</span> David Kuah</span>
+                        <span class="member-tag"><span class="num">5.</span> Ng Fiew Ching</span>
+                        <span class="member-tag"><span class="num">6.</span> Esther Lim</span>
+                        <span class="member-tag"><span class="num">7.</span> Tean Pey Feng</span>
+                    </div>
+                </div>
+
+                <!-- GROUP E -->
+                <div class="group-card">
+                    <div class="group-header">
+                        <span class="group-name"><i class="fa-solid fa-people-group" style="color:var(--accent-gold);"></i> GROUP E</span>
+                        <span class="group-badge">8 Pax</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><span class="num">1.</span> Jamie Goh</span>
+                        <span class="member-tag"><span class="num">2.</span> Amy Sim</span>
+                        <span class="member-tag"><span class="num">3.</span> Tan Peck Hoon</span>
+                        <span class="member-tag"><span class="num">4.</span> Elaine Kwong</span>
+                        <span class="member-tag"><span class="num">5.</span> Ching Ing Hoe</span>
+                        <span class="member-tag"><span class="num">6.</span> Ng Ai Ling</span>
+                        <span class="member-tag"><span class="num">7.</span> Christina Tee</span>
+                        <span class="member-tag"><span class="num">8.</span> Tan Choon Phark</span>
+                    </div>
+                </div>
+
+                <!-- GROUP F -->
+                <div class="group-card">
+                    <div class="group-header">
+                        <span class="group-name"><i class="fa-solid fa-people-group" style="color:var(--accent-gold);"></i> GROUP F</span>
+                        <span class="group-badge">7 Pax</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><span class="num">1.</span> Sheena Lee</span>
+                        <span class="member-tag"><span class="num">2.</span> Timothy Lee</span>
+                        <span class="member-tag"><span class="num">3.</span> Tan Peck Luan</span>
+                        <span class="member-tag"><span class="num">4.</span> Joanne Teh</span>
+                        <span class="member-tag"><span class="num">5.</span> Lee Ai Bee</span>
+                        <span class="member-tag"><span class="num">6.</span> Ng Ee Ling</span>
+                        <span class="member-tag"><span class="num">7.</span> Patrick Tee</span>
+                    </div>
+                </div>
+
+                <!-- GROUP G -->
+                <div class="group-card">
+                    <div class="group-header">
+                        <span class="group-name"><i class="fa-solid fa-people-group" style="color:var(--accent-gold);"></i> GROUP G</span>
+                        <span class="group-badge">7 Pax</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><span class="num">1.</span> Ng Choon Tat</span>
+                        <span class="member-tag"><span class="num">2.</span> Teh Lay Hong</span>
+                        <span class="member-tag"><span class="num">3.</span> Tan Peck Hong</span>
+                        <span class="member-tag"><span class="num">4.</span> Joanne Chow</span>
+                        <span class="member-tag"><span class="num">5.</span> Tien Sen An</span>
+                        <span class="member-tag"><span class="num">6.</span> Ng Vooi Ling</span>
+                        <span class="member-tag"><span class="num">7.</span> Shirley Ong</span>
+                    </div>
+                </div>
+
+                <!-- GROUP H -->
+                <div class="group-card">
+                    <div class="group-header">
+                        <span class="group-name"><i class="fa-solid fa-people-group" style="color:var(--accent-gold);"></i> GROUP H</span>
+                        <span class="group-badge">7 Pax</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><span class="num">1.</span> David Teh</span>
+                        <span class="member-tag"><span class="num">2.</span> Anggelina Kasamiro</span>
+                        <span class="member-tag"><span class="num">3.</span> Sharon Chan</span>
+                        <span class="member-tag"><span class="num">4.</span> Laura Lim</span>
+                        <span class="member-tag"><span class="num">5.</span> Nathan Liang</span>
+                        <span class="member-tag"><span class="num">6.</span> Lim Sook Bee</span>
+                        <span class="member-tag"><span class="num">7.</span> Andy Loh</span>
+                    </div>
+                </div>
+
+                <!-- GROUP I -->
+                <div class="group-card">
+                    <div class="group-header">
+                        <span class="group-name"><i class="fa-solid fa-people-group" style="color:var(--accent-gold);"></i> GROUP I</span>
+                        <span class="group-badge">7 Pax</span>
+                    </div>
+                    <div class="member-tags">
+                        <span class="member-tag"><span class="num">1.</span> Jean Teh</span>
+                        <span class="member-tag"><span class="num">2.</span> Susan Mah</span>
+                        <span class="member-tag"><span class="num">3.</span> Daphne Ding</span>
+                        <span class="member-tag"><span class="num">4.</span> Grace Oo</span>
+                        <span class="member-tag"><span class="num">5.</span> Lucas Lai Qi Lun</span>
+                        <span class="member-tag"><span class="num">6.</span> Tan Peck Leong</span>
+                        <span class="member-tag"><span class="num">7.</span> Molly Yeoh</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="no-results">
+                <i class="fa-solid fa-user-slash" style="font-size: 1.5rem; margin-bottom: 8px; color: #ccc;"></i><br>
+                No participant found with that name.
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        KLANG CHINESE METHODIST CHURCH © 2026
+    </footer>
+
+    <script>
+        function filterGroups() {
+            const input = document.getElementById('nameSearch');
+            const filter = input.value.toLowerCase().trim();
+            const groupCards = document.querySelectorAll('.group-card');
+            let hasResults = false;
+
+            groupCards.forEach(card => {
+                const members = card.querySelectorAll('.member-tag');
+                const groupName = card.querySelector('.group-name').textContent.toLowerCase();
+                let cardMatches = false;
+
+                if (filter !== "" && groupName.includes(filter)) {
+                    cardMatches = true;
+                }
+
+                members.forEach(member => {
+                    const text = member.textContent.toLowerCase();
+                    if (filter !== "" && text.includes(filter)) {
+                        member.classList.add('highlight');
+                        cardMatches = true;
+                    } else {
+                        member.classList.remove('highlight');
+                        if (filter === "" || text.includes(filter)) {
+                            cardMatches = true;
+                        }
+                    }
+                });
+
+                if (cardMatches) {
+                    card.style.display = "block";
+                    hasResults = true;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            document.getElementById('no-results').style.display = hasResults ? "none" : "block";
+        }
+    </script>
+
+</body>
+</html>
