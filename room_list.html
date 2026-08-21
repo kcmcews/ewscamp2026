@@ -162,6 +162,59 @@
             margin-top: 6px;
         }
 
+        /* Important Locations Styling */
+        .loc-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .loc-item {
+            background: #faf8f5;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+
+        .loc-question {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .loc-question i {
+            color: var(--primary-purple);
+            margin-top: 3px;
+            font-size: 0.85rem;
+        }
+
+        .loc-answer {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1.5px solid var(--accent-gold);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+        }
+
+        .loc-badge {
+            background: var(--primary-purple);
+            color: white;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
         /* Search Bar Styling */
         .search-box {
             position: relative;
@@ -320,6 +373,7 @@
             <p style="font-size: 0.85rem; color: #666; margin: 4px 0 0;">Twin Jets Resort Broga Map & Room Assignments</p>
         </div>
 
+        <!-- Section 1: Resort Map -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-map"></i> Resort Map</h2>
             
@@ -331,6 +385,62 @@
             <div class="map-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Tap map to view high-resolution full image</div>
         </div>
 
+        <!-- Section 2: Important Locations -->
+        <div class="card-section">
+            <h2 class="section-title"><i class="fa-solid fa-location-crosshairs"></i> Important Locations</h2>
+            
+            <div class="loc-grid">
+                <!-- Location 1 -->
+                <div class="loc-item">
+                    <div class="loc-question">
+                        <i class="fa-solid fa-key"></i>
+                        <span>1. Where to go for arrival keys &amp; registration?</span>
+                    </div>
+                    <div class="loc-answer">
+                        <span class="loc-badge">A2</span>
+                        <span>Registration Counter</span>
+                    </div>
+                </div>
+
+                <!-- Location 2 -->
+                <div class="loc-item">
+                    <div class="loc-question">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        <span>2. Where will all our talks &amp; sessions be held?</span>
+                    </div>
+                    <div class="loc-answer">
+                        <span class="loc-badge">H3a</span>
+                        <span>Rome Hall</span>
+                    </div>
+                </div>
+
+                <!-- Location 3 -->
+                <div class="loc-item">
+                    <div class="loc-question">
+                        <i class="fa-solid fa-utensils"></i>
+                        <span>3. Where will we be having all our meals (makan)?</span>
+                    </div>
+                    <div class="loc-answer">
+                        <span class="loc-badge">A11</span>
+                        <span>Dining Hall</span>
+                    </div>
+                </div>
+
+                <!-- Location 4 -->
+                <div class="loc-item">
+                    <div class="loc-question">
+                        <i class="fa-solid fa-square-parking"></i>
+                        <span>4. Where will we be parking?</span>
+                    </div>
+                    <div class="loc-answer">
+                        <span class="loc-badge">A1</span>
+                        <span>Parking Area</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Room Assignments -->
         <div class="card-section">
             <h2 class="section-title"><i class="fa-solid fa-users-rectangle"></i> Room Assignments</h2>
 
