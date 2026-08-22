@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Committee Dashboard - 2026 EWS Camp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <style>
         :root {
             --primary-purple: #2e1547;
@@ -33,6 +38,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.02);
             display: flex;
             align-items: center;
+            justify-content: space-between;
         }
 
         .back-btn {
@@ -45,6 +51,31 @@
         }
 
         .back-btn i { margin-right: 8px; }
+
+        .live-status {
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #2e7d32;
+            background: #e8f5e9;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        .live-status.offline {
+            color: #c62828;
+            background: #ffebee;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background-color: currentColor;
+            border-radius: 50%;
+            display: inline-block;
+        }
 
         .container {
             padding: 20px;
@@ -362,6 +393,7 @@
             accent-color: #2e7d32;
         }
 
+        /* Greyed-off state when resolved */
         .issue-item.resolved {
             border-left-color: #999 !important;
             background: #f7f7f7 !important;
@@ -409,6 +441,7 @@
         <a href="index.html" class="back-btn">
             <i class="fa-solid fa-chevron-left"></i> Back to Main
         </a>
+        <div id="syncBadge" class="live-status"><span class="live-dot"></span> Live Sync</div>
     </nav>
 
     <div class="container">
@@ -467,6 +500,23 @@
     </footer>
 
     <script>
+        // --- 1. Firebase Initialization with Config ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyBaHE0lzRL-VnlDd1EVrmM84HrrD6BTwP0",
+            authDomain: "ews-camp-2026.firebaseapp.com",
+            databaseURL: "https://ews-camp-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "ews-camp-2026",
+            storageBucket: "ews-camp-2026.firebasestorage.app",
+            messagingSenderId: "593000001297",
+            appId: "1:593000001297:web:94ff062e14c9a55f2ba6b0",
+            measurementId: "G-YT5BNWBLNC"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const roomsRef = db.ref("ews2026/rooms");
+        const issuesRef = db.ref("ews2026/issues");
+
         function switchTab(panelId, btn) {
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -499,7 +549,6 @@
             { id: "HKV", name: "HK Villa", desc: "Lim Sook Bee, Sheena Lee, Molly Yeoh, Cynthia Tan, Renate Johnston, Tean Pey Feng, Christina Tee, Shirley Ong, Andy Loh, Patrick Tee, Ng Choon Tat, The Swee Seng" }
         ];
 
-        // Format Date Time: "Aug 19, 2:38 PM"
         function getFormattedTimestamp() {
             const now = new Date();
             const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -507,12 +556,43 @@
             return `${dateStr}, ${timeStr}`;
         }
 
-        // --- Room Status Tracker ---
-        function loadRoomTracker(filterKeyword = "") {
+        let liveRoomData = {};
+        let liveIssues = [];
+
+        // --- 2. Live Cloud Listeners ---
+        roomsRef.on('value', (snapshot) => {
+            liveRoomData = snapshot.val() || {};
+            renderRoomTracker();
+        });
+
+        issuesRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            liveIssues = [];
+            if (data) {
+                Object.keys(data).forEach(key => {
+                    liveIssues.push({ key: key, ...data[key] });
+                });
+            }
+            renderIssuesLog();
+        });
+
+        db.ref(".info/connected").on("value", (snap) => {
+            const badge = document.getElementById("syncBadge");
+            if (snap.val() === true) {
+                badge.className = "live-status";
+                badge.innerHTML = `<span class="live-dot"></span> Live Sync`;
+            } else {
+                badge.className = "live-status offline";
+                badge.innerHTML = `<span class="live-dot"></span> Connecting...`;
+            }
+        });
+
+        // --- 3. Room Tracker Functions ---
+        function renderRoomTracker() {
             const container = document.getElementById('roomsContainer');
+            const keyword = (document.getElementById('roomSearchInput')?.value || "").toLowerCase().trim();
             container.innerHTML = '';
             
-            const keyword = filterKeyword.toLowerCase().trim();
             const filteredRooms = officialRooms.filter(room => 
                 room.name.toLowerCase().includes(keyword) || 
                 room.desc.toLowerCase().includes(keyword)
@@ -524,18 +604,15 @@
             }
 
             filteredRooms.forEach(room => {
-                const savedStatus = localStorage.getItem('ews2026_status_' + room.id) || "Vacant";
-                const checkInTime = localStorage.getItem('ews2026_checkin_time_' + room.id) || "";
-                const checkOutTime = localStorage.getItem('ews2026_checkout_time_' + room.id) || "";
+                const roomData = liveRoomData[room.id] || { status: "Vacant", checkin_time: "", checkout_time: "" };
+                const savedStatus = roomData.status || "Vacant";
+                const checkInTime = roomData.checkin_time || "";
+                const checkOutTime = roomData.checkout_time || "";
                 
                 let badgeClass = "empty";
-                if (savedStatus === "Checked-In") {
-                    badgeClass = "checked";
-                } else if (savedStatus === "Checked-Out") {
-                    badgeClass = "checkedout";
-                }
+                if (savedStatus === "Checked-In") badgeClass = "checked";
+                if (savedStatus === "Checked-Out") badgeClass = "checkedout";
 
-                // Render both timestamps if available
                 let stampsHtml = "";
                 if (checkInTime || checkOutTime) {
                     stampsHtml += `<div class="timestamps-row">`;
@@ -562,70 +639,70 @@
         }
 
         function filterRooms() {
-            const query = document.getElementById('roomSearchInput').value;
-            loadRoomTracker(query);
+            renderRoomTracker();
         }
 
         function cycleRoomStatus(roomId) {
-            const currentStatus = localStorage.getItem('ews2026_status_' + roomId) || "Vacant";
-            let nextStatus = "Vacant";
+            const currentRoom = liveRoomData[roomId] || { status: "Vacant" };
+            const currentStatus = currentRoom.status || "Vacant";
+            
+            let updates = {};
 
             if (currentStatus === "Vacant") { 
-                nextStatus = "Checked-In"; 
-                localStorage.setItem('ews2026_checkin_time_' + roomId, getFormattedTimestamp());
+                updates = {
+                    status: "Checked-In",
+                    checkin_time: getFormattedTimestamp()
+                };
             } else if (currentStatus === "Checked-In") { 
-                nextStatus = "Checked-Out"; 
-                localStorage.setItem('ews2026_checkout_time_' + roomId, getFormattedTimestamp());
+                updates = {
+                    status: "Checked-Out",
+                    checkout_time: getFormattedTimestamp()
+                };
             } else { 
-                // Resetting to Vacant clears both records
-                nextStatus = "Vacant"; 
-                localStorage.removeItem('ews2026_checkin_time_' + roomId);
-                localStorage.removeItem('ews2026_checkout_time_' + roomId);
+                updates = {
+                    status: "Vacant",
+                    checkin_time: null,
+                    checkout_time: null
+                };
             }
 
-            localStorage.setItem('ews2026_status_' + roomId, nextStatus);
-
-            const currentSearch = document.getElementById('roomSearchInput').value;
-            loadRoomTracker(currentSearch);
+            roomsRef.child(roomId).update(updates);
         }
 
-        // --- Issue Log Tracker ---
-        function loadIssuesLog() {
+        // --- 4. Issue Log Tracker Functions ---
+        function renderIssuesLog() {
             const container = document.getElementById('issuesListContainer');
             container.innerHTML = '';
-            const issues = JSON.parse(localStorage.getItem('ews2026_camp_issues') || "[]");
 
-            if(issues.length === 0) {
+            if (liveIssues.length === 0) {
                 container.innerHTML = `<p style="text-align:center; color:#888; font-size:0.85rem; margin:10px 0;">No issues currently logged.</p>`;
                 return;
             }
 
-            issues.forEach((issue, index) => {
+            liveIssues.forEach((issue) => {
                 const isResolved = issue.status === "Resolved";
                 const cardClass = isResolved ? "issue-item resolved" : "issue-item";
                 const checkedAttr = isResolved ? "checked" : "";
 
                 container.innerHTML += `
-                    <div class="${cardClass}" id="issue-card-${index}">
+                    <div class="${cardClass}" id="issue-card-${issue.key}">
                         <div class="issue-header">
                             <span><i class="fa-solid fa-location-dot" style="color:var(--accent-gold); margin-right:4px;"></i> ${issue.location}</span>
-                            <button class="delete-issue-btn" onclick="deleteIssue(${index})"><i class="fa-regular fa-trash-can"></i></button>
+                            <button class="delete-issue-btn" onclick="deleteIssue('${issue.key}')"><i class="fa-regular fa-trash-can"></i></button>
                         </div>
                         <p style="margin:6px 0 10px 0; color:#444; font-weight:500;">${issue.description}</p>
                         
-                        <!-- Resolution Action Box -->
                         <div class="resolution-wrapper">
                             <label>Resolution Action Notes</label>
-                            <input type="text" class="resolution-input" id="res-input-${index}" 
-                                value="${issue.resolution || ''}" oninput="saveResolution(${index}, this.value)" 
+                            <input type="text" class="resolution-input" 
+                                value="${issue.resolution || ''}" onchange="saveResolution('${issue.key}', this.value)" 
                                 placeholder="Describe how it was fixed..." ${isResolved ? 'disabled' : ''}>
                         </div>
 
-                        <!-- Mark Resolved Checkbox -->
                         <div class="resolve-action-container">
-                            <input type="checkbox" class="resolve-checkbox" id="check-${index}" 
-                                ${checkedAttr} onchange="toggleResolveCheckbox(${index}, this.checked)">
-                            <label style="cursor:pointer;" for="check-${index}">Mark Issue as Resolved</label>
+                            <input type="checkbox" class="resolve-checkbox" id="check-${issue.key}" 
+                                ${checkedAttr} onchange="toggleResolveCheckbox('${issue.key}', this.checked)">
+                            <label style="cursor:pointer;" for="check-${issue.key}">Mark Issue as Resolved</label>
                         </div>
                     </div>
                 `;
@@ -637,41 +714,31 @@
             const desc = document.getElementById('issueDesc').value.trim();
             if(!loc || !desc) { alert("Please fill in location and description!"); return; }
 
-            const issues = JSON.parse(localStorage.getItem('ews2026_camp_issues') || "[]");
-            issues.push({ location: loc, description: desc, status: "Pending", resolution: "" });
-            localStorage.setItem('ews2026_camp_issues', JSON.stringify(issues));
-            
+            issuesRef.push({
+                location: loc,
+                description: desc,
+                status: "Pending",
+                resolution: "",
+                timestamp: getFormattedTimestamp()
+            });
+
             document.getElementById('issueLoc').value = '';
             document.getElementById('issueDesc').value = '';
-            loadIssuesLog();
         }
 
-        function saveResolution(index, value) {
-            const issues = JSON.parse(localStorage.getItem('ews2026_camp_issues') || "[]");
-            issues[index].resolution = value;
-            localStorage.setItem('ews2026_camp_issues', JSON.stringify(issues));
+        function saveResolution(key, value) {
+            issuesRef.child(key).update({ resolution: value });
         }
 
-        function toggleResolveCheckbox(index, checked) {
-            const issues = JSON.parse(localStorage.getItem('ews2026_camp_issues') || "[]");
-            issues[index].status = checked ? "Resolved" : "Pending";
-            localStorage.setItem('ews2026_camp_issues', JSON.stringify(issues));
-            loadIssuesLog();
+        function toggleResolveCheckbox(key, checked) {
+            issuesRef.child(key).update({ status: checked ? "Resolved" : "Pending" });
         }
 
-        function deleteIssue(index) {
+        function deleteIssue(key) {
             if(confirm("Delete this issue record permanently?")) {
-                const issues = JSON.parse(localStorage.getItem('ews2026_camp_issues') || "[]");
-                issues.splice(index, 1);
-                localStorage.setItem('ews2026_camp_issues', JSON.stringify(issues));
-                loadIssuesLog();
+                issuesRef.child(key).remove();
             }
         }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            loadRoomTracker();
-            loadIssuesLog();
-        });
     </script>
 </body>
 </html>
